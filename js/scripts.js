@@ -149,10 +149,12 @@ const eventNames = [
 
 //I am attempting to call the fetch for randomuser once per page, store the output and use it in all subsequent calls.
 var user = {}
+//kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg
+var ninjaKey = 'tmbx6CYG/0EjEAnFP1dy/g==vPJNXWA30fKaUHOG'
 fetch('https://api.api-ninjas.com/v1/randomuser',{
   method: 'GET',
   mode: "no-cors",
-  headers: { 'X-Api-Key': 'kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg'},
+  headers: { 'X-Api-Key': ninjaKey},
   contentType: 'application/json',
 })
 .then(response => response.json())

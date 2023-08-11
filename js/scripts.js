@@ -151,6 +151,7 @@ const eventNames = [
 var user = {}
 fetch('https://api.api-ninjas.com/v1/randomuser',{
   method: 'GET',
+  mode: "no-cors",
   headers: { 'X-Api-Key': 'kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg'},
   contentType: 'application/json',
 })
@@ -179,7 +180,6 @@ trackCalls.forEach(trackCall =>
         "consentstatus":consentGroups()
       })
 
-      if(OneTrustActiveGroups.contains())
       if (trackCall.value ==="Newsletter Signed Up"){
         analytics.track(trackCall.value,{
           "newsletter status": "subscribed",

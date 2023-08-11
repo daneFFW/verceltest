@@ -192,11 +192,11 @@ trackCalls.forEach(trackCall =>
         analytics.identify({
           "email":user.email,
           "name":user.name,
-          "newsletter status":"subscribed",
+          "newsletterStatus":"subscribed",
         })
       }else if (trackCall.value === "Signed Up"|trackCall.value === "Signed In"|trackCall.value === "Signed Out"){
         analytics.track(trackCall.value,{
-          "logged in": trackCall.value,
+          "loggedIn": trackCall.value,
           "newUser": (trackCall.value === "Signed Up")? "true": "false",
           "deviceType": "desktop",
           "location":"TX",

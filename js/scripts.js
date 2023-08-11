@@ -209,7 +209,11 @@ trackCalls.forEach(trackCall =>
           "username":user.username
         })
       } else{
-        analytics.track(trackCall.value);
+        analytics.track(trackCall.value,{
+          "pagePath": location.pathname,
+          "deviceType": "desktop",
+          "consentStatus": consentGroups()
+        });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name

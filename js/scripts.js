@@ -183,11 +183,11 @@ trackCalls.forEach(trackCall =>
 
       if (trackCall.value ==="Newsletter Signed Up"){
         analytics.track(trackCall.value,{
-          "newsletter status": "subscribed",
-          "device type": "desktop",
+          "newsletterStatus": "subscribed",
+          "deviceType": "desktop",
           "location":"TX",
-          "page path": location.pathname,
-          "consent status": consentGroups()
+          "pagePath": location.pathname,
+          "consentStatus": consentGroups()
         });
         analytics.identify({
           "email":user.email,
@@ -198,10 +198,10 @@ trackCalls.forEach(trackCall =>
         analytics.track(trackCall.value,{
           "logged in": trackCall.value,
           "newUser": (trackCall.value === "Signed Up")? "true": "false",
-          "device type": "desktop",
+          "deviceType": "desktop",
           "location":"TX",
-          "page path": location.pathname,
-          "consent status": consentGroups()
+          "pagePath": location.pathname,
+          "consentStatus": consentGroups()
         });
         analytics.identify(uuid,{
           "email":user.email,

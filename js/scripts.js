@@ -165,20 +165,20 @@ var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach(trackCall => 
   trackCall.addEventListener('click', () =>{
         // Generate a dataLayer push  for the clicked event
-        function consentGroups(){
-          if(OptanonActiveGroups.includes('C0003')&&OptanonActiveGroups.includes('C0004') ){
-                 return consentStatus= "granted"; 
-          }else{
-              return consentStatus = "denied";
-          }    
-          }
+        // function consentGroups(){
+        //   if(OptanonActiveGroups.includes('C0003')&&OptanonActiveGroups.includes('C0004') ){
+        //          return consentStatus= "granted"; 
+        //   }else{
+        //       return consentStatus = "denied";
+        //   }    
+        //   }
       dataLayer.push({
         "event": trackCall.value,
         "username":user.username,
         "name":user.name,
         "email":user.email,
         "userID":uuid,
-        "consentStatus":consentGroups()
+        "consentStatus":OptanonActiveGroups
       })
 
       if (trackCall.value ==="Newsletter Signed Up"){
@@ -187,7 +187,7 @@ trackCalls.forEach(trackCall =>
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": consentGroups()
+          "consentStatus": OptanonActiveGroups
         });
         analytics.identify({
           "email":user.email,
@@ -201,7 +201,7 @@ trackCalls.forEach(trackCall =>
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": consentGroups()
+          "consentStatus": OptanonActiveGroups
         });
         analytics.identify(uuid,{
           "email":user.email,
@@ -212,7 +212,7 @@ trackCalls.forEach(trackCall =>
         analytics.track(trackCall.value,{
           "pagePath": location.pathname,
           "deviceType": "desktop",
-          "consentStatus": consentGroups()
+          "consentStatus": OptanonActiveGroups
         });
         analytics.identify(uuid,{
           "email":user.email,

@@ -153,7 +153,6 @@ var user = {}
 var ninjaKey = 'tmbx6CYG/0EjEAnFP1dy/g==vPJNXWA30fKaUHOG'
 fetch('https://api.api-ninjas.com/v1/randomuser',{
   method: 'GET',
-  mode: "no-cors",
   headers: { 'X-Api-Key': ninjaKey},
   contentType: 'application/json',
 })

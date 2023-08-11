@@ -64,32 +64,158 @@ const eventNames = [
 ];
 
 // Get the track call buttons and add event listeners to them
+// var trackCalls = document.querySelectorAll('.trackCall');
+// trackCalls.forEach(trackCall => 
+//   trackCall.addEventListener('click', () =>{
+//     // Hit the Fake Name Generator API and generate Segment calls for each fake person and event
+//     fetch('./js/users.json',{
+//     })
+//       .then(response => response.json())
+//       .then(json => {
+//         console.log(json)
+//       })
+//           // Generate an identify call for the person
+          
+//           // var nameSplit = data.name.split(' ');
+
+//                  // Generate a track call for the clicked event
+//         analytics.track(trackCall.value);
+
+//         alert("track call sent" + trackCall.value);
+
+//         // analytics.identify ( person.uuid, {
+//         //     first_name: nameSplit[0],
+//         //     last_name: nameSplit[1],
+//         //     email: data.email,
+//         //     phone: data.phone,
+//         //     username: data.username
+//         //   })
+
+//       })
+//       );
+
+// Get the track call buttons and add event listeners to them first iteration
+// This kinda messes with the identify call since it is returning a new user for each button click. 
+// while this in essense generates alot of unique identify calls and populates the user db in segment it does not adhere to their standard
+
+
+// var trackCalls = document.querySelectorAll('.trackCall');
+// trackCalls.forEach(trackCall => 
+//   trackCall.addEventListener('click', () =>{
+//     var uuid =crypto.randomUUID();
+//     console.log("Begin Script: " +uuid);
+//         // Generate a dataLayer push  for the clicked event
+//         fetch('https://api.api-ninjas.com/v1/randomuser',{
+//           method: 'GET',
+//           headers: { 'X-Api-Key': 'kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg'},
+//           contentType: 'application/json',
+//       })
+//       .then(response => response.json())
+//       .then(data =>{ dataLayer.push({
+//         "event": trackCall.value,
+//         "username":data.username,
+//         "name":data.name,
+//         "email":data.email,
+//         "userID":uuid
+//       })
+//       if (trackCall.value ==="Newsletter Signed Up"){
+//         console.log("Newsletter: "+ uuid);
+//         analytics.track(trackCall.value,{
+//           "newsletter status": "subscribed",
+//           "device type": "desktop",
+//           "location":"TX",
+//           "page path": location.pathname
+//         });
+//         analytics.identify(uuid,{
+//           "email":data.email,
+//           "name":data.name,
+//           "newsletter status":"subscribed",
+//         })
+//       }else{
+//         console.log("Others: " + uuid);
+//         analytics.track(trackCall.value);
+//         analytics.identify(uuid,{
+//           "email":data.email,
+//           "name":data.name
+//         })
+//       }
+
+//         console.log("End of Script: "+uuid);
+//         console.log(data);
+//         alert("dataLayer push for button: " + trackCall.value + "\n" + "response: " + JSON.stringify(data))
+//        })
+//       })
+//       );
+
+//I am attempting to call the fetch for randomuser once per page, store the output and use it in all subsequent calls.
+var user = {}
+fetch('https://api.api-ninjas.com/v1/randomuser',{
+  method: 'GET',
+  headers: { 'X-Api-Key': 'kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg'},
+  contentType: 'application/json',
+})
+.then(response => response.json())
+.then(data =>  user = data)
+.catch((error)=>console.log(error));
+var uuid = crypto.randomUUID();
+
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach(trackCall => 
   trackCall.addEventListener('click', () =>{
-    // Hit the Fake Name Generator API and generate Segment calls for each fake person and event
-    fetch('./js/users.json',{
-    })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json)
+        // Generate a dataLayer push  for the clicked event
+      dataLayer.push({
+        "event": trackCall.value,
+        "username":user.username,
+        "name":user.name,
+        "email":user.email,
+        "userID":uuid
       })
-          // Generate an identify call for the person
-          
-          // var nameSplit = data.name.split(' ');
-
-                 // Generate a track call for the clicked event
+      if (trackCall.value ==="Newsletter Signed Up"){
+        analytics.track(trackCall.value,{
+          "newsletter status": "subscribed",
+          "device type": "desktop",
+          "location":"TX",
+          "page path": location.pathname,
+          "consent status": 
+        });
+        analytics.identify({
+          "email":user.email,
+          "name":user.name,
+          "newsletter status":"subscribed",
+        })
+      }else if (trackCall.value === "Signed Up"|trackCall.value === "Signed In"|trackCall.value === "Signed Out"){
+        analytics.track(trackCall.value,{
+          "logged in": trackCall.value,
+          "newUser": (trackCall.value === "Signed Up")? "true": "false",
+          "device type": "desktop",
+          "location":"TX",
+          "page path": location.pathname
+        });
+        analytics.identify(uuid,{
+          "email":user.email,
+          "name":user.name,
+          "username":user.username
+        })
+      } else{
         analytics.track(trackCall.value);
-
-        alert("track call sent" + trackCall.value);
-
-        // analytics.identify ( person.uuid, {
-        //     first_name: nameSplit[0],
-        //     last_name: nameSplit[1],
-        //     email: data.email,
-        //     phone: data.phone,
-        //     username: data.username
-        //   })
-
-      })
+        analytics.identify(uuid,{
+          "email":user.email,
+          "name":user.name
+        })
+      }
+        alert("dataLayer push for button: " + trackCall.value + "\n" + "response: " + JSON.stringify(user))
+       })
       );
+
+// var productList = document.querySelectorAll('.producList');
+// products.forEach(product =>
+//   fetch('https://api.api-ninjas.com/v1/randomimage?category='+product.value,+"&width=100&height=100"{
+//     method: 'GET',
+//     headers: { 'X-Api-Key': 'kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg','Accept':'image/jpg'},
+//     contentType: 'application/json',
+// })
+// .then(response =>{
+//   console.log(response)
+// } )
+  
+//   )

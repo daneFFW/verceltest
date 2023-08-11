@@ -5,7 +5,7 @@
   <title>Analytics Testing</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/main.css?version=1.2">
+  <link rel="stylesheet" href="../css/main.css?version=1.2">
   <link rel="stylesheet" href="">
   <link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
@@ -23,8 +23,9 @@
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
   'event':'page_load',
-  'page_path':'/',
-  'page_name':'home'
+  'page_path':'/catalog/product2',
+  'page_name':'product2',
+  'page_type':'view_product_page'
 })
 </script>
   <!-- Google Tag Manager -->
@@ -51,24 +52,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <nav>
     <ul>
-      <li><a href="/..">Home</a></li>
-      <li><a href="/catalog.html">Catalog</a></li>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../catalog.hmtl">Catalog</a></li>
       <li><a href="#">Login</a></li>
-      <li><a href="#">Blog</a></li>
+      <li><a href="../contact.html">Contact</a></li>
     </ul> 
   </nav>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
-      <h1 class="neonText">Analytics Test Blog</h1>
+      <h1 class="neonText">Analytics Test Product 2</h1>
       <h2 class="neonText">Segment Vercel Avo GTM OneTrust</h2>
     </div>
 
   </div>
 <div class="trackCalls" id="trackCallList">
-    <input type="button" class="trackCall" id="b1" value="Blog 1"></input>
-    <input type="button" class="trackCall" id="b2" value="Blog 2"></input>
-    <input type="button" class="trackCall" id="b3" value="Blog 3"></input>
+  <input type="button" class="trackCall add_to_cart" id="addP2" value="Add To Cart"></input>
+
+
 </div>
+
 
 </div>
 
@@ -76,5 +78,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 
 </script>
-<!-- <script src="js/scripts.js?version=1.2221"></script> -->
+<script src="../js/scripts.js?version=1.2221"></script>
 </html>

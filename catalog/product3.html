@@ -5,7 +5,7 @@
   <title>Analytics Testing</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/main.css?version=1.2">
+  <link rel="stylesheet" href="../css/main.css?version=1.2">
   <link rel="stylesheet" href="">
   <link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
@@ -23,9 +23,9 @@
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
   'event':'page_load',
-  'page_path':'/catalog',
-  'page_name':'catalog',
-  'page_type':'view_product_list'
+  'page_path':'/catalog/product3',
+  'page_name':'product3',
+  'page_type':'view_product_page'
 })
 </script>
   <!-- Google Tag Manager -->
@@ -44,33 +44,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="main_container">
   <div class="main_container_logo">
-    <a id="link_segment" href="https://segment.com/"><img src="media/segment.png" alt="segment"></a>
-    <a id="link_gtm" href="https://tagmanager.google.com.com/"><img src="media/gtm.png" alt="gtm"></a>
-    <a id="link_vercel" href="https://vercel.com/"><img src="media/Vercel_favicon.svg" alt="gtm"></a>
-    <a id="link_avo" href="https://www.avo.app/"><img src="media/avo.png" alt="avo"></a>
-    <a id="link_onetrust" href="https://www.onetrust.com/"><img src="media/onetrust.png" alt="avo"></a>
+    <a id="link_segment" href="https://segment.com/"><img src="../media/segment.png" alt="segment"></a>
+    <a id="link_gtm" href="https://tagmanager.google.com.com/"><img src="../media/gtm.png" alt="gtm"></a>
+    <a id="link_vercel" href="https://vercel.com/"><img src="../media/Vercel_favicon.svg" alt="gtm"></a>
+    <a id="link_avo" href="https://www.avo.app/"><img src="../media/avo.png" alt="avo"></a>
+    <a id="link_onetrust" href="https://www.onetrust.com/"><img src="../media/onetrust.png" alt="avo"></a>
   </div>
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Catalog</a></li>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../catlog.html">Catalog</a></li>
       <li><a href="#">Login</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="../contact.html">Contact</a></li>
     </ul> 
   </nav>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
-      <h1 class="neonText">Analytics Test Catalog</h1>
+      <h1 class="neonText">Analytics Test Product 3</h1>
       <h2 class="neonText">Segment Vercel Avo GTM OneTrust</h2>
     </div>
 
   </div>
 <div class="trackCalls" id="trackCallList">
-   <a href="catalog/product1.html" target="_blank" rel="noopener noreferrer"><input type="button" class="trackCall" id="p1" value="Product 1"></input></a>
-   <a href="catalog/product2.html" target="_blank" rel="noopener noreferrer"><input type="button" class="trackCall" id="p2" value="Product 2"></input></a> 
-   <a href="catalog/product3.html" target="_blank" rel="noopener noreferrer"><input type="button" class="trackCall" id="p3" value="Product 3"></input></a>
-
-
+    <input type="button" class="trackCall add_to_cart" id="addP3" value="Add To Cart"></input>
 </div>
 
 
@@ -80,5 +76,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 
 </script>
-<script src="js/scripts.js?version=1.2221"></script>
+<script src="../js/scripts.js?version=1.2221"></script>
 </html>

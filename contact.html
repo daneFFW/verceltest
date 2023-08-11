@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>Analytics Testing</title>
+  <title>Anltyics Testing Contact</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/main.css?version=1.2">
@@ -23,9 +23,9 @@
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
   'event':'page_load',
-  'page_path':'/catalog',
-  'page_name':'catalog',
-  'page_type':'view_product_list'
+  'page_path':'/contact',
+  'page_name':'contact',
+  'page_type':'contact_page'
 })
 </script>
   <!-- Google Tag Manager -->
@@ -53,26 +53,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="#">Catalog</a></li>
+      <li><a href="catalog.html">Catalog</a></li>
       <li><a href="#">Login</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#">Contact</a></li>
     </ul> 
   </nav>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
-      <h1 class="neonText">Analytics Test Catalog</h1>
+      <h1 class="neonText">Analytics Test Contact</h1>
       <h2 class="neonText">Segment Vercel Avo GTM OneTrust</h2>
     </div>
 
   </div>
-<div class="trackCalls" id="trackCallList">
-   <a href="catalog/product1.html" target="_blank" rel="noopener noreferrer"><input type="button" class="trackCall" id="p1" value="Product 1"></input></a>
-   <a href="catalog/product2.html" target="_blank" rel="noopener noreferrer"><input type="button" class="trackCall" id="p2" value="Product 2"></input></a> 
-   <a href="catalog/product3.html" target="_blank" rel="noopener noreferrer"><input type="button" class="trackCall" id="p3" value="Product 3"></input></a>
-
-
+<div class="trackCalls contactForm" id="trackCallList">
+  <input type="text" name="Name" id="contactName">
+  <input type="text" name="Question" id="contactQuestion">  
+  <input type="button" class="trackCall" id="submit" value="Contact Us"></input>
 </div>
-
 
 </div>
 

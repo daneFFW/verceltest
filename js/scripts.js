@@ -163,20 +163,30 @@ var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach(trackCall => 
   trackCall.addEventListener('click', () =>{
         // Generate a dataLayer push  for the clicked event
+        function consentGroups(){
+          if(OptanonActiveGroups.includes('C0003')&&OptanonActiveGroups.includes('C0004') ){
+                 return consentStatus= "granted"; 
+          }else{
+              return consentStatus = "denied";
+          }    
+          }
       dataLayer.push({
         "event": trackCall.value,
         "username":user.username,
         "name":user.name,
         "email":user.email,
-        "userID":uuid
+        "userID":uuid,
+        "consentstatus":consentGroups()
       })
+
+      if(OneTrustActiveGroups.contains())
       if (trackCall.value ==="Newsletter Signed Up"){
         analytics.track(trackCall.value,{
           "newsletter status": "subscribed",
           "device type": "desktop",
           "location":"TX",
           "page path": location.pathname,
-          "consent status": 
+          "consent status": consentGroups()
         });
         analytics.identify({
           "email":user.email,
@@ -189,7 +199,8 @@ trackCalls.forEach(trackCall =>
           "newUser": (trackCall.value === "Signed Up")? "true": "false",
           "device type": "desktop",
           "location":"TX",
-          "page path": location.pathname
+          "page path": location.pathname,
+          "consent status": consentGroups()
         });
         analytics.identify(uuid,{
           "email":user.email,

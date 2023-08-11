@@ -178,7 +178,7 @@ trackCalls.forEach(trackCall =>
         "name":user.name,
         "email":user.email,
         "userID":uuid,
-        "consentstatus":consentGroups()
+        "consentStatus":consentGroups()
       })
 
       if (trackCall.value ==="Newsletter Signed Up"){

@@ -14,7 +14,14 @@ var fnu = document.getElementById("fnu");
 var user = {};
 var uuid = '';
 var ninjaKey = 'tmbx6CYG/0EjEAnFP1dy/g==vPJNXWA30fKaUHOG'
-
+var groupCookie = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("OptanonConsent="))
+  ?.split("=")[9];
+var consentListUnformatted = decodeURIComponent(groupCookie).split("&");
+console.log(consentListUnformatted);
+var consentList = consentListUnformatted[1];
+console.log(consentList);
 
 //reusable functions
 
@@ -84,22 +91,22 @@ uuid = localStorage.getItem('uuid')
   fetchNewUser();
 }
 
-function analyticsTrackCall(){ 
+function analyticsTrackCall(trackCall){ 
   
-if(OptanonActiveGroups.includes("C0004,C0003")){  
+if(consentList.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": OptanonActiveGroups
+          "consentStatus": consentList
         });
         analytics.identify({
           "email":user.email,
           "name":user.name,
           "newsletterStatus":"subscribed",
-          "consentStatus": OptanonActiveGroups
+          "consentStatus": consentList
         })
       }else if (trackCall.dataset.value === "signed_up"|trackCall.dataset.value === "signed_in"|trackCall.dataset.value === "signed_out"){
         analytics.track(trackCall.dataset.value,{
@@ -108,29 +115,29 @@ if(OptanonActiveGroups.includes("C0004,C0003")){
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": OptanonActiveGroups
+          "consentStatus": consentList
         });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name,
           "username":user.username,
-          "consentStatus": OptanonActiveGroups
+          "consentStatus": consentList
         })
       } else{
         analytics.track(trackCall.dataset.value,{
           "pagePath": location.pathname,
           "deviceType": "desktop",
-          "consentStatus": OptanonActiveGroups
+          "consentStatus": consentList
         });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name,
-          "consentStatus": OptanonActiveGroups
+          "consentStatus": consentList
         })
       }
         alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "UUID: " + uuid)
 }else{
-  va(trackCall.dataset.value);
+  // va(trackCall.dataset.value);
 };
 
 };

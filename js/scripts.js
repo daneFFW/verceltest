@@ -146,7 +146,7 @@ console.log(consent);
         alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "UUID: " + uuid)
 }else{
   console.log(consent)
-  if(typeof va === "function"){va(trackCall.dataset.value)}else{console.log("Vercel did not load");}
+  if(typeof va === "function"){va('event',{"name":trackCall.dataset.value,"data":{"consentStatus":consent,}})}else{console.log("Vercel did not load");}
 };
 
    

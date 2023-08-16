@@ -100,6 +100,7 @@ var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', ()=>{
 var consent = checkConsent();
+console.log(consent);
     if(consent.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
@@ -107,13 +108,13 @@ var consent = checkConsent();
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": checkConsent
+          "consentStatus": consent
         });
         analytics.identify({
           "email":user.email,
           "name":user.name,
           "newsletterStatus":"subscribed",
-          "consentStatus": consentList
+          "consentStatus": conset
         })
       }else if (trackCall.dataset.value === "signed_up"|trackCall.dataset.value === "signed_in"|trackCall.dataset.value === "signed_out"){
         analytics.track(trackCall.dataset.value,{
@@ -122,28 +123,29 @@ var consent = checkConsent();
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": consentList
+          "consentStatus": consent
         });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name,
           "username":user.username,
-          "consentStatus": consentList
+          "consentStatus": consent
         })
       } else{
         analytics.track(trackCall.dataset.value,{
           "pagePath": location.pathname,
           "deviceType": "desktop",
-          "consentStatus": consentList
+          "consentStatus": consent
         });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name,
-          "consentStatus": consentList
+          "consentStatus": consent
         })
       }
         alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "UUID: " + uuid)
 }else{
+  console.log(consent)
   if(typeof va === "function"){va(trackCall.dataset.value)}else{console.log("Vercel did not load");}
 };
 

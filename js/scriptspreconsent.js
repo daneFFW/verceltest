@@ -84,10 +84,18 @@ uuid = localStorage.getItem('uuid')
   fetchNewUser();
 }
 
-function analyticsTrackCall(){ 
-  
-if(document.title.includes("catalog") && OptanonActiveGroups.includes("C0004,C0003")){  
-      if (trackCall.dataset.value ==="newsletter_signed_up"){
+function analyticsTrackCall(event,properties){
+  analytics.track(event,{properties});
+  va.track(event,{properties})
+}
+
+
+
+var trackCalls = document.querySelectorAll('.trackCall');
+trackCalls.forEach(trackCall => 
+  trackCall.addEventListener('click', () =>{
+
+      if (trackCall.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",
           "deviceType": "desktop",
@@ -129,12 +137,18 @@ if(document.title.includes("catalog") && OptanonActiveGroups.includes("C0004,C00
         })
       }
         alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "UUID: " + uuid)
-}else{
-  va(trackCall.dataset.value);
-};
+       })
+      );
 
-};
-
-var trackCalls = document.querySelectorAll('.trackCall');
-trackCalls.forEach((trackCall) => {
-  trackCall.addEventListener('click', analyticsTrackCall)})
+// var productList = document.querySelectorAll('.producList');
+// products.forEach(product =>
+//   fetch('https://api.api-ninjas.com/v1/randomimage?category='+product.value,+"&width=100&height=100"{
+//     method: 'GET',
+//     headers: { 'X-Api-Key': 'kXmutCVMgRC2Sx9HlF6dFg==Doskfk1Pi10KRkRg','Accept':'image/jpg'},
+//     contentType: 'application/json',
+// })
+// .then(response =>{
+//   console.log(response)
+// } )
+  
+//   )

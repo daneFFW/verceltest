@@ -132,6 +132,9 @@ h1{
 h2{    font-size: 2em;
     text-align: center;
 }
+h3{    font-size: 1.4em;
+    text-align: center;
+}
 p{
     color: antiquewhite;
     font-family: 'Roboto', sans-serif;
@@ -147,6 +150,10 @@ p{
     border-radius: 10px;
 }
 
+.callToActionHeader{
+    margin: 0 0 0 2em;
+    font-weight: normal;
+}
 .neonText {
     color: #0fa;
     /* text-shadow:
@@ -188,9 +195,10 @@ nav {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: center;
+    margin: 0 1em 2em;
 }
 
-.trackCall {
+input.trackCall, .cookieSettings, .footerButton {
     background-color: darkturquoise;
     margin: 0 5px;
     text-decoration: none;
@@ -199,16 +207,48 @@ nav {
     padding: 10px;
     box-shadow: 1px 1px 1px #00000059;
     color: white;
+    font-family: sans-serif;
 }
 
 
-.trackCall:active {
+input.trackCall:active {
     box-shadow: 0 0 0 black;
     background-color: rgb(1, 174, 177);
     color: #e6e3e3;
 
 }
 
+.callToActionImg, .catalogImg {
+    max-height: 200px;
+    border-radius: 7px;
+    margin: 10px;
+}
+div.product {
+    max-width: 300px;
+    flex-direction: column;
+    margin: 2em auto;
+}
+
+img.productImg {
+    border-radius: 7px;
+}
+
+div.product p {
+    color: black;
+    text-align: center;
+}
+
+.productLink{
+text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.productLink p{
+    color: black;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

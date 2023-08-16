@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>Analytics Testing</title>
+  <title>Analytics Testing Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/main.css?version=1.2">
@@ -28,21 +28,21 @@ dataLayer.push({
   'page_type':'home_page'
 })
 </script>
-<!-- <script defer src="/_vercel/insights/script.js"></script> -->
+<script defer src="/_vercel/insights/script.js"></script>
 
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N8KTFT6');</script>
+})(window,document,'script','dataLayer','GTM-N8KTFT6');</script> -->
 <!-- End Google Tag Manager -->
 
   </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8KTFT6"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8KTFT6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="main_container">
@@ -69,20 +69,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 <div class="trackCalls" id="trackCallList">
-    <input type="button" class="trackCall" id="nl" value="Newsletter Signed Up"></input>
-    <input type="button" class="trackCall" id="gd" value="Guide Downloaded"></input>
-    <input type="button" class="trackCall" id="su" value="Signed Up"></input>
-    <input type="button" class="trackCall" id="si" value="Signed In"></input>
-    <input type="button" class="trackCall" id="so" value="Signed Out"></input>
-    <input type="button" class="trackCall" id="ts" value="Trial Started"></input>
-    <input type="button" class="trackCall" id="te" value="Trial Ended"></input>
-    <input type="button" class="trackCall" id="pc" value="Phone Contact"></input>
-    <input type="button" class="trackCall" id="ec" value="Email Contact"></input>
+    <input type="button" class="trackCall" id="nl" value="Newsletter Signed Up" data-value="newsletter_signed_up"></input>
+    <input type="button" class="trackCall" id="gd" value="Guide Downloaded" data-value="Guide Downloaded"></input>
+    <input type="button" class="trackCall" id="su" value="Signed Up" data-value="signed_up"></input>
+    <input type="button" class="trackCall" id="si" value="Signed In" data-value="signed_in"></input>
+    <input type="button" class="trackCall" id="so" value="Signed Out" data-value="signed_out"></input>
+    <input type="button" class="trackCall" id="ts" value="Trial Started" data-value="trial_started"></input>
+    <input type="button" class="trackCall" id="te" value="Trial Ended" data-value="trial_ended"></input>
+    <input type="button" class="trackCall" id="pc" value="Phone Contact" data-value="phone_contact"></input>
+    <input type="button" class="trackCall" id="ec" value="Email Contact" data-value="email_contact"></input>
+</div>
+<h3 class="neonText callToActionHeader">Products</h3>
+<div class="trackCalls callToActions" id="callToActionsList">
+
+ <a href="catalog/product1.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="woodCTA" src="media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" data-value="product1_cta"></a>
+ <a href="catalog/product2.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="oceanCTA" src="media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" data-value="product2_cta"></a>
+ <a href="catalog/product3.html" class="callToActionLink"><img class="trackCall callToActionImg" id="mountainCTA" src="media/mountain.jpg"  alt="A Climg in the Mountains" title="A Climg in the Mountains" data-value="product3_cta"></a>
+
 </div>
 <div class="footer">
-<!-- OneTrust Cookies Settings button start -->
-<button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
-<!-- OneTrust Cookies Settings button end -->
+  <!-- OneTrust Cookies Settings button start -->
+  <a href="#" rel="noopener noreferrer" class="trackCall optanon-toggle-display cookieSettings footerButton" value="Cookie Settings" data-value="cookie_settings">Cookie Settings</a>
+  <input type="button" class="trackCall footerButton" id="cu" value="Clear User" data-value="clear_user"></input>
+  <input type="button" class="trackCall footerButton" id="fnu" value="Fetch New User" data-value="fetch_new_user"></input>
+  
+  <!-- OneTrust Cookies Settings button end -->
 </div>
 
 </div>

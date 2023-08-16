@@ -86,7 +86,7 @@ uuid = localStorage.getItem('uuid')
 
 // function analyticsTrackCall(){ 
 // };
-var consentList = function checkConsent(){
+function checkConsent(){
 var groupCookie = document.cookie
   .split("; ")
   .find((row) => row.startsWith("OptanonConsent="))
@@ -99,8 +99,8 @@ return consentGroups[1]
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', ()=>{
-
-    if(.includes("C0004:1,C0003:1")){  
+var consent = checkConsent();
+    if(consent.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",

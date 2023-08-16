@@ -86,7 +86,7 @@ uuid = localStorage.getItem('uuid')
 
 function analyticsTrackCall(){ 
   
-if(document.title.includes("catalog") && OptanonActiveGroups.includes("C0004,C0003")){  
+if(OptanonActiveGroups.includes("C0004,C0003")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",

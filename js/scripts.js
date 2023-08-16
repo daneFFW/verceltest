@@ -91,7 +91,7 @@ var groupCookie = document.cookie
   .split("; ")
   .find((row) => row.startsWith("OptanonConsent="))
 var decodeConsent = decodeURIComponent(groupCookie).split("&");
-console.log(consentListUnformatted);
+console.log(decodeConsent);
 var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
 console.log(consentGroups[2]);
 return consentGroups

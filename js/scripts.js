@@ -91,9 +91,14 @@ uuid = localStorage.getItem('uuid')
   fetchNewUser();
 }
 
-function analyticsTrackCall(trackCall){ 
-  
-if(consentList.includes("C0004:1,C0003:1")){  
+// function analyticsTrackCall(){ 
+// };
+
+var trackCalls = document.querySelectorAll('.trackCall');
+trackCalls.forEach((trackCall) => {
+  trackCall.addEventListener('click', ()=>{
+
+    if(consentList.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",
@@ -137,11 +142,9 @@ if(consentList.includes("C0004:1,C0003:1")){
       }
         alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "UUID: " + uuid)
 }else{
-  // va(trackCall.dataset.value);
+  va(trackCall.dataset.value);
 };
 
-};
-
-var trackCalls = document.querySelectorAll('.trackCall');
-trackCalls.forEach((trackCall) => {
-  trackCall.addEventListener('click', analyticsTrackCall(trackCall))})
+   
+})
+})

@@ -93,14 +93,14 @@ var groupCookie = document.cookie
 var decodeConsent = decodeURIComponent(groupCookie).split("&");
 console.log(decodeConsent);
 var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
-console.log(consentGroups[2]);
-return consentGroups
+console.log(consentGroups[1]);
+return consentGroups[1]
 }
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', ()=>{
 
-    if(consentGroups[1].includes("C0004:1,C0003:1")){  
+    if(.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",

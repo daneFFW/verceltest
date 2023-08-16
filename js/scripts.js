@@ -117,12 +117,12 @@ console.log("Consent Status:" + consent);
           "email":user.email,
           "name":user.name,
           "newsletter_status":"subscribed",
-          "consent_status": conset
+          "consent_status": consent
         })
       }else if (trackCall.dataset.value === "signed_up"|trackCall.dataset.value === "signed_in"|trackCall.dataset.value === "signed_out"){
         analytics.track(trackCall.dataset.value,{
           "logged_in": trackCall.dataset.value,
-          "new_user": (trackCall.value === "Signed Up")? "true": "false",
+          "new_user": (trackCall.dataset.value === "signed_up")? "true": "false",
           "device_type": "desktop",
           "location":"TX",
           "page_path": location.pathname,

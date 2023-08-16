@@ -2,10 +2,10 @@
 <html>
 <head>
 
-  <title>Analytics Testing Product2</title>
+  <title>Analytics Testing Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/main.css?version=1.2">
+  <link rel="stylesheet" href="css/main.css?version=1.2">
   <link rel="stylesheet" href="">
   <link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
@@ -23,9 +23,9 @@
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
   'event':'page_load',
-  'page_path':'/catalog/product2',
-  'page_name':'product2',
-  'page_type':'view_product_page'
+  'page_path':'/',
+  'page_name':'home',
+  'page_type':'home_page'
 })
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -37,6 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-N8KTFT6');</script> -->
 <!-- End Google Tag Manager -->
+
   </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -46,33 +47,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="main_container">
   <div class="main_container_logo">
-    <a id="link_segment" href="https://segment.com/"><img src="../media/segment.png" alt="segment"></a>
-    <a id="link_gtm" href="https://tagmanager.google.com.com/"><img src="../media/gtm.png" alt="gtm"></a>
-    <a id="link_vercel" href="https://vercel.com/"><img src="../media/Vercel_favicon.svg" alt="gtm"></a>
-    <a id="link_avo" href="https://www.avo.app/"><img src="../media/avo.png" alt="avo"></a>
-    <a id="link_onetrust" href="https://www.onetrust.com/"><img src="../media/onetrust.png" alt="avo"></a>
+   <a id="link_segment" href="https://segment.com/"><img src="media/segment.png" alt="segment"></a>
+   <a id="link_gtm" href="https://tagmanager.google.com.com/"><img src="media/gtm.png" alt="gtm"></a>
+   <a id="link_vercel" href="https://vercel.com/"><img src="media/Vercel_favicon.svg" alt="gtm"></a>
+   <a id="link_avo" href="https://www.avo.app/"><img src="media/avo.png" alt="avo"></a>
+   <a id="link_onetrust" href="https://www.onetrust.com/"><img src="media/onetrust.png" alt="avo"></a>
   </div>
   <nav>
     <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../index-segment.html">Segment Always</a></li>
-      <li><a href="../catalog.html">Catalog</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="catalog.html">Catalog</a></li>
       <li><a href="#">Login</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul> 
   </nav>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
-      <h1 class="neonText">Analytics Test Product 2</h1>
-      <h2 class="neonText">Segment Vercel Avo GTM OneTrust</h2>
+      <h1 class="neonText">Analytics Test Site</h1>
+      <h2 class="neonText"> Segment Always Allowed</h2>
+      <h2 class="neonText">Testing Segment Vercel Avo GTM OneTrust</h2>
     </div>
 
   </div>
-<div class="trackCalls product" id="trackCallProduc2">
-  <img class="productImg" id="oceanProduct2" src="../media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" value="product2">
-  <p>A Swim in the Ocean</p>
-  <input type="button" class="trackCall add_to_cart" id="addP2" value="Add To Cart" data-value="add_to_cart" data-properties="product2"></input>
+<div class="trackCalls" id="trackCallList">
+    <input type="button" class="trackCall" id="nl" value="Newsletter Signed Up" data-value="newsletter_signed_up"></input>
+    <input type="button" class="trackCall" id="gd" value="Guide Downloaded" data-value="Guide Downloaded"></input>
+    <input type="button" class="trackCall" id="su" value="Signed Up" data-value="signed_up"></input>
+    <input type="button" class="trackCall" id="si" value="Signed In" data-value="signed_in"></input>
+    <input type="button" class="trackCall" id="so" value="Signed Out" data-value="signed_out"></input>
+    <input type="button" class="trackCall" id="ts" value="Trial Started" data-value="trial_started"></input>
+    <input type="button" class="trackCall" id="te" value="Trial Ended" data-value="trial_ended"></input>
+    <input type="button" class="trackCall" id="pc" value="Phone Contact" data-value="phone_contact"></input>
+    <input type="button" class="trackCall" id="ec" value="Email Contact" data-value="email_contact"></input>
+</div>
+<h3 class="neonText callToActionHeader">Products</h3>
+<div class="trackCalls callToActions" id="callToActionsList">
 
+ <a href="catalog/product1.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="woodCTA" src="media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" data-value="product_cta" data-properties="product1"></a>
+ <a href="catalog/product2.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="oceanCTA" src="media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" data-value="product_cta" data-properties="product2"></a>
+ <a href="catalog/product3.html" class="callToActionLink"><img class="trackCall callToActionImg" id="mountainCTA" src="media/mountain.jpg"  alt="A Climg in the Mountains" title="A Climg in the Mountains" data-value="product_cta" data-properties="product3"></a>
 
 </div>
 <div class="footer">
@@ -90,5 +103,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 
 </script>
-<script src="../js/scripts.js?version=1.2221"></script>
+<script defer src="js/scriptspreconsent.js?version=1.2221"></script>
 </html>

@@ -137,4 +137,4 @@ if(document.title.includes("catalog") && OptanonActiveGroups.includes("C0004,C00
 
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
-  trackCall.addEventListener('click', analyticsTrackCall)})
+  trackCall.addEventListener('click', analyticsTrackCall(trackCall))})

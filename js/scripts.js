@@ -20,7 +20,7 @@ var groupCookie = document.cookie
   ?.split("=")[9];
 var consentListUnformatted = decodeURIComponent(groupCookie).split("&");
 console.log(consentListUnformatted);
-var consentList = consentListUnformatted[1];
+var consentList = consentListUnformatted[0];
 console.log(consentList);
 
 //reusable functions

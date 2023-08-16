@@ -107,48 +107,74 @@ console.log("Consent Status:" + consent);
     if(typeof consent !== "undefined" && consent.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
-          "newsletterStatus": "subscribed",
-          "deviceType": "desktop",
+          "newsletter_status": "subscribed",
+          "device_type": "desktop",
           "location":"TX",
-          "pagePath": location.pathname,
-          "consentStatus": consent
+          "page_path": location.pathname,
+          "consent_status": consent
         });
         analytics.identify({
           "email":user.email,
           "name":user.name,
-          "newsletterStatus":"subscribed",
-          "consentStatus": conset
+          "newsletter_status":"subscribed",
+          "consent_status": conset
         })
       }else if (trackCall.dataset.value === "signed_up"|trackCall.dataset.value === "signed_in"|trackCall.dataset.value === "signed_out"){
         analytics.track(trackCall.dataset.value,{
-          "loggedIn": trackCall.dataset.value,
-          "newUser": (trackCall.value === "Signed Up")? "true": "false",
-          "deviceType": "desktop",
+          "logged_in": trackCall.dataset.value,
+          "new_user": (trackCall.value === "Signed Up")? "true": "false",
+          "device_type": "desktop",
           "location":"TX",
-          "pagePath": location.pathname,
-          "consentStatus": consent
+          "page_path": location.pathname,
+          "consent_status": consent
         });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name,
           "username":user.username,
-          "consentStatus": consent
+          "consent_status": consent
         })
-      } else{
+      }else if(trackCall.dataset.value.includes('product')|trackCall.dataset.value.includes('add_to_cart')){
         analytics.track(trackCall.dataset.value,{
-          "pagePath": location.pathname,
-          "deviceType": "desktop",
-          "consentStatus": consent
+          "page_path": location.pathname,
+          "device_type": "desktop",
+          "product_name":trackCall.dataset.properties,
+          "consent_status": consent
         });
         analytics.identify(uuid,{
           "email":user.email,
           "name":user.name,
-          "consentStatus": consent
+          "consent_status": consent
         })
-      }
+      }else{analytics.track(trackCall.dataset.value,{
+        "page_path": location.pathname,
+        "device_type": "desktop",
+        "consent_status": consent
+      });
+      analytics.identify(uuid,{
+        "email":user.email,
+        "name":user.name,
+        "consent_status": consent
+      })
+    }
 }else{
   console.log(consent)
-  if(typeof va === "function"){va('event',{"name":trackCall.dataset.value,"data":{"consentStatus":consent,}})}else{console.log("Vercel did not load");}
+  if(typeof va === "function"&& !trackCall.dataset.value.includes('product')){
+    va('event',{
+      "name":trackCall.dataset.value,
+      "data":{
+        "consent_status":consent,
+    }})
+  }else if (typeof va === "function"&& trackCall.dataset.value.includes('product')){
+    va('event',{
+      "name":trackCall.dataset.value,
+      "data":{
+        "consent_status":consent,
+        "product_name":trackCall.dataset.properties
+    }})
+  }else{
+    console.log("Vercel did not load");
+  }
 };
 alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent )
 })

@@ -14,14 +14,7 @@ var fnu = document.getElementById("fnu");
 var user = {};
 var uuid = '';
 var ninjaKey = 'tmbx6CYG/0EjEAnFP1dy/g==vPJNXWA30fKaUHOG'
-var groupCookie = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("OptanonConsent="))
-  ?.split("=")[9];
-var consentListUnformatted = decodeURIComponent(groupCookie).split("&");
-console.log(consentListUnformatted);
-var consentList = consentListUnformatted[0];
-console.log(consentList);
+var cookieList = document.cookie
 
 //reusable functions
 
@@ -93,19 +86,28 @@ uuid = localStorage.getItem('uuid')
 
 // function analyticsTrackCall(){ 
 // };
-
+var consentList = function checkConsent(){
+var groupCookie = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("OptanonConsent="))
+var decodeConsent = decodeURIComponent(groupCookie).split("&");
+console.log(consentListUnformatted);
+var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
+console.log(consentGroups[2]);
+return consentGroups
+}
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', ()=>{
 
-    if(consentList.includes("C0004:1,C0003:1")){  
+    if(consentGroups[1].includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",
           "deviceType": "desktop",
           "location":"TX",
           "pagePath": location.pathname,
-          "consentStatus": consentList
+          "consentStatus": checkConsent
         });
         analytics.identify({
           "email":user.email,
@@ -142,7 +144,7 @@ trackCalls.forEach((trackCall) => {
       }
         alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "UUID: " + uuid)
 }else{
-  va(trackCall.dataset.value);
+  if(va){va(trackCall.dataset.value)};
 };
 
    

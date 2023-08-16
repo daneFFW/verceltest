@@ -87,21 +87,24 @@ uuid = localStorage.getItem('uuid')
 // function analyticsTrackCall(){ 
 // };
 function checkConsent(){
-var groupCookie = document.cookie
+  var groupCookie = document.cookie
   .split("; ")
   .find((row) => row.startsWith("OptanonConsent="))
+console.log(typeof groupCookie)
+if(typeof groupCookie !== "undefined"){
 var decodeConsent = decodeURIComponent(groupCookie).split("&");
 console.log(decodeConsent);
 var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
 console.log(consentGroups[1]);
 return consentGroups[1]
+}else{ console.log("Optanon Cookie does not exist");}
 }
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', ()=>{
 var consent = checkConsent();
-console.log(consent);
-    if(consent.includes("C0004:1,C0003:1")){  
+console.log("Consent Status:" + consent);
+    if(typeof consent !== "undefined" && consent.includes("C0004:1,C0003:1")){  
       if (trackCall.dataset.value ==="newsletter_signed_up"){
         analytics.track(trackCall.dataset.value,{
           "newsletterStatus": "subscribed",

@@ -99,6 +99,8 @@ console.log(consentGroups[1]);
 return consentGroups[1]
 }else{ console.log("Optanon Cookie does not exist");}
 }
+
+
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', ()=>{

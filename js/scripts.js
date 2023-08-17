@@ -131,7 +131,7 @@ function trackHandler(event){
   var trackProperties = properties.trackCall;
   var identifyProperties = properties.identifyCall;
 try {
-  if(typeof consent !== "undefined" && consent.includes("C0004:1,C0003:1")|typeof consent !== "undefined" &&consent.includes("C0004,C0003")){
+  if(typeof consent != "undefined" && consent.includes("C0004:1,C0003:1")|typeof consent != "undefined" &&consent.includes("C0004,C0003")){
     analytics.track(event.target.dataset.value,{
      trackProperties
     })
@@ -145,7 +145,7 @@ try {
 va('event',{
 "name":event.target.dataset.value,
 "data":{
-  "product_name":event.target.dataset.properties
+  trackProperties
 }})
 
 alert("Event: " + event.target.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent + "\n" + "Vercel Fired")

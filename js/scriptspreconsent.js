@@ -109,42 +109,35 @@ function checkConsent(){
 function trackHandler(event){
   var consent = checkConsent();
   console.log("Consent Status:" + consent);
-  var properties = {
-    "trackCall":{
-          "newsletter_status": (event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
-          "device_type": "desktop",
-          "location":"TX",
-          "page_path": location.pathname,
-          "consent_status": consent,
-          "logged_in": event.target.dataset.value,
-          "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
-          "product_name":event.target.dataset.properties,
-        },
-    "identifyCall":{
+ 
+try {
+    analytics.track(event.target.dataset.value,{
+      "newsletter_status": (event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
+      "device_type": "desktop",
+      "location":"TX",
+      "page_path": location.pathname,
+      "consent_status": consent,
+      "logged_in": event.target.dataset.value,
+      "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
+      "product_name":event.target.dataset.properties,
+    })
+    analytics.identify({
       "email":user.email,
       "name":user.name,
       "newsletter_status":(event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
       "consent_status": consent
-    }
-  };
-  var trackProperties = properties.trackCall;
-  var identifyProperties = properties.identifyCall;
-try {
-    analytics.track(event.target.dataset.value,{
-     trackProperties
-    })
-    analytics.identify({
-      identifyProperties
     })
 
     alert("Event: " + event.target.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent + "\n" + "Segment Fired")
 } catch (error) {
   console.error("Error: " + error)
 }
-
 }
 
 var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', trackHandler)
 })
+
+analytics.page("home",{"consent_status":checkConsent()});
+

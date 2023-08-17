@@ -145,7 +145,6 @@ try {
 va('event',{
 "name":event.target.dataset.value,
 "data":{
-  "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
   "product_name":event.target.dataset.properties
 }})
 

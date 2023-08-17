@@ -145,7 +145,8 @@ try {
 va('event',{
 "name":event.target.dataset.value,
 "data":{
-  trackProperties
+  "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
+  "product_name":event.target.dataset.properties
 }})
 
 alert("Event: " + event.target.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent + "\n" + "Vercel Fired")

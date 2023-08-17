@@ -85,76 +85,66 @@ uuid = localStorage.getItem('uuid')
 }
 
 function checkConsent(){
-  var groupCookie = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("OptanonConsent="))
-console.log(typeof groupCookie)
-if(typeof groupCookie !== "undefined"){
-var decodeConsent = decodeURIComponent(groupCookie).split("&");
-console.log(decodeConsent);
-var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
-console.log(consentGroups[1]);
-return consentGroups[1]
-}else{ console.log("Optanon Cookie does not exist");}
+  try {
+  if(typeof document.cookie.split("; ").find((row) => row.startsWith("OptanonConsent=")) !== "undefined"){
+      var groupCookie = document.cookie.split("; ").find((row) => row.startsWith("OptanonConsent="))
+      console.log(typeof groupCookie)
+      var decodeConsent = decodeURIComponent(groupCookie).split("&");
+      console.log(decodeConsent);
+      var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
+      console.log(consentGroups[1]);
+      return consentGroups[1]
+  }
+  else if(typeof OptanonActiveGroups !== "undefined"){
+      console.log("Optanon Cookie does not exist, looking for OptanonActiveGroups")
+      return OptanonActiveGroups}
+  else{
+  return "OneTrust Not Active"
+  }} 
+  catch (error) {
+      console.error(":" + error)
+  }
+}
+// Eventhandler, checks consent, captures properties of the event.target, sends segment track and identify calls if consent is granted or sends a vercel hit if it is not. 
+function trackHandler(event){
+  var consent = checkConsent();
+  console.log("Consent Status:" + consent);
+  var properties = {
+    "trackCall":{
+          "newsletter_status": (event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
+          "device_type": "desktop",
+          "location":"TX",
+          "page_path": location.pathname,
+          "consent_status": consent,
+          "logged_in": event.target.dataset.value,
+          "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
+          "product_name":event.target.dataset.properties,
+        },
+    "identifyCall":{
+      "email":user.email,
+      "name":user.name,
+      "newsletter_status":(event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
+      "consent_status": consent
+    }
+  };
+  var trackProperties = properties.trackCall;
+  var identifyProperties = properties.identifyCall;
+try {
+    analytics.track(event.target.dataset.value,{
+     trackProperties
+    })
+    analytics.identify({
+      identifyProperties
+    })
+
+    alert("Event: " + event.target.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent + "\n" + "Segment Fired")
+} catch (error) {
+  console.error("Error: " + error)
+}
+
 }
 
 var trackCalls = document.querySelectorAll('.trackCall');
-trackCalls.forEach(trackCall => 
-  trackCall.addEventListener('click', () =>{
-    var consent = checkConsent();
-    console.log("Consent Status:" + consent);
-    if (trackCall.dataset.value ==="newsletter_signed_up"){
-      analytics.track(trackCall.dataset.value,{
-        "newsletter_status": "subscribed",
-        "device_type": "desktop",
-        "location":"TX",
-        "page_path": location.pathname,
-        "consent_status": consent
-      });
-      analytics.identify({
-        "email":user.email,
-        "name":user.name,
-        "newsletter_status":"subscribed",
-        "consent_status": consent
-      })
-    }else if (trackCall.dataset.value === "signed_up"|trackCall.dataset.value === "signed_in"|trackCall.dataset.value === "signed_out"){
-      analytics.track(trackCall.dataset.value,{
-        "logged_in": trackCall.dataset.value,
-        "new_user": (trackCall.dataset.value === "signed_up")? "true": "false",
-        "device_type": "desktop",
-        "location":"TX",
-        "page_path": location.pathname,
-        "consent_status": consent
-      });
-      analytics.identify(uuid,{
-        "email":user.email,
-        "name":user.name,
-        "username":user.username,
-        "consent_status": consent
-      })
-    }else if(trackCall.dataset.value.includes('product')|trackCall.dataset.value.includes('add_to_cart')){
-      analytics.track(trackCall.dataset.value,{
-        "page_path": location.pathname,
-        "device_type": "desktop",
-        "product_name":trackCall.dataset.properties,
-        "consent_status": consent
-      });
-      analytics.identify(uuid,{
-        "email":user.email,
-        "name":user.name,
-        "consent_status": consent
-      })
-    }else{analytics.track(trackCall.dataset.value,{
-      "page_path": location.pathname,
-      "device_type": "desktop",
-      "consent_status": consent
-    });
-    analytics.identify(uuid,{
-      "email":user.email,
-      "name":user.name,
-      "consent_status": consent
-    })
-  }
-  alert("Event: " + trackCall.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent )
-  })
-)
+trackCalls.forEach((trackCall) => {
+  trackCall.addEventListener('click', trackHandler)
+})

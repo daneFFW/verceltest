@@ -18,30 +18,6 @@ var cookieList = document.cookie
 
 //reusable functions
 
-function segmentTrack() {
-    // Replace this with your own track call
-    analytics.track("Newsletter Signup",{
-      email: 'jon@doe.com',
-      type: 'header'
-    });
-    alert("newsletter track call sent");
-  };
-  
-  function segmentIdentify() {
-    // Replace this with your own identify call
-    analytics.identify('user123', {
-      email: 'user@example.com',
-      name: 'John Doe'
-    });
-  };
-  
-function segmentGroup() {
-    // Replace this with your own group call
-    analytics.group('account123', {
-      name: 'Acme Co.'
-    });
-  };
-
 function clearUser() {
    if(localStorage.getItem("user")){
     localStorage.removeItem("user");

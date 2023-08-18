@@ -17,29 +17,6 @@ var ninjaKey = 'tmbx6CYG/0EjEAnFP1dy/g==vPJNXWA30fKaUHOG'
 var cookieList = document.cookie
 //reusable functions
 
-function segmentTrack() {
-    // Replace this with your own track call
-    analytics.track("Newsletter Signup",{
-      email: 'jon@doe.com',
-      type: 'header'
-    });
-    alert("newsletter track call sent");
-  };
-  
-  function segmentIdentify() {
-    // Replace this with your own identify call
-    analytics.identify('user123', {
-      email: 'user@example.com',
-      name: 'John Doe'
-    });
-  };
-  
-function segmentGroup() {
-    // Replace this with your own group call
-    analytics.group('account123', {
-      name: 'Acme Co.'
-    });
-  };
 
 function clearUser() {
    if(localStorage.getItem("user")){
@@ -111,7 +88,10 @@ function checkConsent(){
 function trackHandler(event){
   var consent = checkConsent();
   console.log("Consent Status:" + consent);
- 
+function dataProperties(event){
+
+
+}
 try {
   if(consent.includes("C0004:1,C0003:1")|consent.includes("C0004,C0003")){
     analytics.track(event.target.dataset.value,{

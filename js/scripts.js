@@ -100,6 +100,7 @@ function checkConsent(){
       console.log("Optanon Cookie does not exist, looking for OptanonActiveGroups")
       return OptanonActiveGroups}
   else{
+    console.log("OneTrust Not Active")
   return "OneTrust Not Active"
   }} 
   catch (error) {
@@ -159,4 +160,12 @@ trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', trackHandler)
 })
 
-analytics.page("home",{"consent_status":checkConsent()});
+document.onreadystatechange = () => {
+  if(document.readyState=== "complete"){
+    var consent = checkConsent();
+  if(consent.includes("C0004:1,C0003:1")|consent.includes("C0004,C0003")){
+  analytics.page("home",{"consent_status":checkConsent()});
+  console.log("DOM fully loaded and parsed Segment Pageview Called");
+}else{
+  console.log("DOM fully loaded and parsed Consent Not Given Segment Page Not Called");
+}}};

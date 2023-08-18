@@ -99,7 +99,8 @@ textarea {
 
  .main_container{
      max-width: 1000px;
-     margin: auto;
+     min-height: 1000px;
+     margin: 0 auto 7em;
  }
  h1, h2{
     /* font-family: 'Roboto', sans-serif; */

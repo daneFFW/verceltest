@@ -32,8 +32,12 @@ function clearUser() {
    if(localStorage.getItem("user")){
     localStorage.removeItem("user");
     localStorage.removeItem("uuid");
+    localStorage.removeItem("ajs_user_id");
+    localStorage.removeItem("ajs_user_traits");
     console.log("User: " + user.name + " has been cleared from localStorage");
     user = '';
+    uuid = '';
+    identify_properties = "";
   } else{
     console.log("No user to clear");
     }
@@ -52,9 +56,9 @@ function fetchNewUser(){
     .catch((error)=>console.log(error));
     uuid = crypto.randomUUID();
     localStorage.setItem('uuid',uuid);
+    user['user_new_user'] = "true";
     alert("Event: Fetch New User "+  "\n" + "User: " + JSON.stringify(localStorage.getItem("user")) + "\n" + "UUID: " + uuid)
-
-  }
+  };
 
 cu.addEventListener("click",clearUser);
 fnu.addEventListener("click",fetchNewUser);
@@ -65,13 +69,7 @@ fnu.addEventListener("click",fetchNewUser);
 // const apiEndpoint = 'https://api.namefake.com/english-united-states/random/';
 
 // checks to see if user is in local storage if so then returns the value and populates the var otherwisel fetches it from the api
-if (localStorage.getItem('user')){
-user = JSON.parse(localStorage.getItem('user'))
-user['user_new_user'] = "false";
-uuid = localStorage.getItem('uuid')
-}else{
-  fetchNewUser();
-};
+
 
 // checks for OptanonConsent cookie if it exists returns the groups otherwise looks for the OptanonActiveGroups object and uses those values to populate groups. The cookie returns all 4 groups with :1(active) or :0(not active) after the group number while the OptanonActiveGroups only returns the groups that are active and omits the :1 and :0
 
@@ -104,24 +102,31 @@ function checkConsent(){
   }
 };
 
-function allProperties(event){
+function managerProperties(event){
   console.log("dateProperties read")
   for (const prop in event.dataset){
     if(event.dataset.hasOwnProperty(prop) && prop !== "event"){
      console.log("user and track:  " + prop)
+     data[prop]=event.dataset[prop];
+     if(event.dataset.event === "signed_out"){
+      clearUser();
+     }else{
     user[prop]=event.dataset[prop];
-    data[prop]=event.dataset[prop];
+    }
 }
 localStorage.setItem("user", JSON.stringify(user));
 console.log("User Updated");
 data['consent_status'] = consent_status;
 user['consent_status'] = consent_status;
+if(event.dataset.event === "signed_out"){
+  clearUser();
+ }else{
 for (const prop in user){
  if(prop !== "address" | prop !== "birthday" | prop !== "sex")
  identify_properties[prop]=user[prop];
 }
 console.log("User Properties passed to identify_properties object: " +JSON.stringify(identify_properties));
-}
+}}
 };
 
 // Eventhandler, checks consent, captures properties of the event.target, sends segment track and identify calls if consent is granted or sends a vercel hit if it is not. 
@@ -131,14 +136,14 @@ function trackHandler(event){
 
 try {
   if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
-    allProperties(event.target);
+    managerProperties(event.target);
     analytics.track(event.target.dataset.event,data)
     analytics.identify(uuid,identify_properties)
 
     alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Segment Fired")
 
 }else if(typeof va === "function"){
-  allProperties(event.target);
+  managerProperties(event.target);
 va('event',{
 "name":event.target.dataset.event,
 data})
@@ -156,6 +161,8 @@ trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', trackHandler)
 })
 
+
+
 document.onreadystatechange = () => {
   if(document.readyState=== "complete"){
     consent_status = checkConsent();
@@ -163,5 +170,6 @@ document.onreadystatechange = () => {
   analytics.page("home",{"consent_status":checkConsent()});
   console.log("DOM fully loaded and parsed Segment Pageview Called");
 }else{
+  clearUser();
   console.log("DOM fully loaded and parsed Consent Not Given Segment Page Not Called");
 }}};

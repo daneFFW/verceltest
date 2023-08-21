@@ -67,7 +67,7 @@ fnu.addEventListener("click",fetchNewUser);
 // checks to see if user is in local storage if so then returns the value and populates the var otherwisel fetches it from the api
 if (localStorage.getItem('user')){
 user = JSON.parse(localStorage.getItem('user'))
-user['new_user'] = "false";
+user['user_new_user'] = "false";
 uuid = localStorage.getItem('uuid')
 }else{
   fetchNewUser();

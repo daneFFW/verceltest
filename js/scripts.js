@@ -86,11 +86,13 @@ function checkConsent(){
       var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
       console.log(consentGroups[1]);
       consent_status = consentGroups[1];
+      data['consent_status'] = consent_status;
       return consentGroups[1]
   }
   else if(typeof OptanonActiveGroups !== "undefined"){
       console.log("Optanon Cookie does not exist, looking for OptanonActiveGroups")
       consent_status = OptanonActiveGroups;
+      data['consent_status'] = consent_status;
       return OptanonActiveGroups}
   else{
     console.log("OneTrust Not Active")

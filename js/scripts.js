@@ -121,6 +121,7 @@ user['consent_status'] = consent_status;
 if(event.dataset.event === "signed_out"){
   clearUser();
  }else{
+ 
 for (const prop in user){
  if(prop !== "address" | prop !== "birthday" | prop !== "sex")
  identify_properties[prop]=user[prop];
@@ -128,7 +129,12 @@ for (const prop in user){
 console.log("User Properties passed to identify_properties object: " +JSON.stringify(identify_properties));
 }}
 };
-
+// if (localStorage.getItem('user')){
+//   user = JSON.parse(localStorage.getItem('user'))
+//   uuid = localStorage.getItem('uuid')
+//   }else{
+//     fetchNewUser();
+//   }
 // Eventhandler, checks consent, captures properties of the event.target, sends segment track and identify calls if consent is granted or sends a vercel hit if it is not. 
 function trackHandler(event){
   consent_status = checkConsent();

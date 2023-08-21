@@ -11,10 +11,21 @@ var pc = document.getElementById("pc");
 var ec = document.getElementById("ec");
 var cu = document.getElementById("cu");
 var fnu = document.getElementById("fnu");
+var consent_status = "";
 var user = {};
+var identify_properties = {
+
+};
+var data ={
+  "device_type": "desktop",
+  "location":"TX",
+  "page_path": location.pathname,
+  "consent_status":""
+};
 var uuid = '';
 var ninjaKey = 'tmbx6CYG/0EjEAnFP1dy/g==vPJNXWA30fKaUHOG'
-var cookieList = document.cookie
+var cookieList = document.cookie;
+
 //reusable functions
 
 
@@ -23,12 +34,14 @@ function clearUser() {
     localStorage.removeItem("user");
     localStorage.removeItem("uuid");
     console.log("User: " + user.name + " has been cleared from localStorage");
+    user = '';
   } else{
     console.log("No user to clear");
     }
   };
 
 function fetchNewUser(){
+    user = '';
     fetch('https://api.api-ninjas.com/v1/randomuser',{
       method: 'GET',
       headers: { 'X-Api-Key': ninjaKey},
@@ -55,6 +68,7 @@ fnu.addEventListener("click",fetchNewUser);
 // checks to see if user is in local storage if so then returns the value and populates the var otherwisel fetches it from the api
 if (localStorage.getItem('user')){
 user = JSON.parse(localStorage.getItem('user'))
+user['new_user'] = "false";
 uuid = localStorage.getItem('uuid')
 }else{
   fetchNewUser();
@@ -71,10 +85,12 @@ function checkConsent(){
       console.log(decodeConsent);
       var consentGroups = decodeConsent.find((row)=> row.startsWith("groups")).split("=")
       console.log(consentGroups[1]);
+      consent_status = consentGroups[1];
       return consentGroups[1]
   }
   else if(typeof OptanonActiveGroups !== "undefined"){
       console.log("Optanon Cookie does not exist, looking for OptanonActiveGroups")
+      consent_status = OptanonActiveGroups;
       return OptanonActiveGroups}
   else{
     console.log("OneTrust Not Active")
@@ -84,50 +100,45 @@ function checkConsent(){
       console.error(":" + error)
   }
 }
+
+function dataProperties(event){
+  console.log("dateProperties read")
+  for (const prop in event.dataset){
+    if(event.dataset.hasOwnProperty(prop) && prop !== "event"){
+     console.log("user and track:  " + prop)
+    user[prop]=event.dataset[prop];
+    data[prop]=event.dataset[prop];
+}
+localStorage.setItem("user", JSON.stringify(user));
+console.log("User Updated");
+data['consent_status'] = consent_status;
+}
+}
+
 // Eventhandler, checks consent, captures properties of the event.target, sends segment track and identify calls if consent is granted or sends a vercel hit if it is not. 
 function trackHandler(event){
-  var consent = checkConsent();
-  console.log("Consent Status:" + consent);
-function dataProperties(event){
+  consent_status = checkConsent();
+  console.log("Consent Status:" + consent_status);
 
-
-}
 try {
-  if(consent.includes("C0004:1,C0003:1")|consent.includes("C0004,C0003")){
-    analytics.track(event.target.dataset.value,{
-      "newsletter_status": (event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
-      "device_type": "desktop",
-      "location":"TX",
-      "page_path": location.pathname,
-      "consent_status": consent,
-      "logged_in": event.target.dataset.value,
-      "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
-      "product_name":event.target.dataset.properties,
-    })
+  if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
+    dataProperties(event.target);
+    analytics.track(event.target.dataset.event,data)
     analytics.identify({
       "email":user.email,
       "name":user.name,
-      "newsletter_status":(event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
-      "consent_status": consent
+      "newsletter_status":(event.target.dataset.event === "newsletter_signed_up")? "subscribed": "",
+      "consent_status": consent_status
     })
 
-    alert("Event: " + event.target.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent + "\n" + "Segment Fired")
+    alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Segment Fired")
 
 }else if(typeof va === "function"){
 va('event',{
-"name":event.target.dataset.value,
-"data":{
-  "newsletter_status": (event.target.dataset.value === "newsletter_signed_up")? "subscribed": "",
-  "device_type": "desktop",
-  "location":"TX",
-  "page_path": location.pathname,
-  "consent_status": consent,
-  "logged_in": event.target.dataset.value,
-  "new_user": (event.target.dataset.value === "signed_up")? "true": "false",
-  "product_name":event.target.dataset.properties,
-}})
+"name":event.target.dataset.event,
+data})
 
-alert("Event: " + event.target.dataset.value + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent + "\n" + "Vercel Fired")
+alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Vercel Fired")
 }
 } catch (error) {
   console.error("Error: " + error)
@@ -142,8 +153,8 @@ trackCalls.forEach((trackCall) => {
 
 document.onreadystatechange = () => {
   if(document.readyState=== "complete"){
-    var consent = checkConsent();
-  if(consent.includes("C0004:1,C0003:1")|consent.includes("C0004,C0003")){
+    consent_status = checkConsent();
+  if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
   analytics.page("home",{"consent_status":checkConsent()});
   console.log("DOM fully loaded and parsed Segment Pageview Called");
 }else{

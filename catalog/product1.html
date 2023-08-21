@@ -51,19 +51,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="main_container">
   <div class="main_container_logo">
-    <a id="link_segment" href="https://segment.com/"><img src="../media/segment.png" alt="segment"></a>
-    <a id="link_gtm" href="https://tagmanager.google.com.com/"><img src="../media/gtm.png" alt="gtm"></a>
-    <a id="link_vercel" href="https://vercel.com/"><img src="../media/Vercel_favicon.svg" alt="gtm"></a>
-    <a id="link_avo" href="https://www.avo.app/"><img src="../media/avo.png" alt="avo"></a>
-    <a id="link_onetrust" href="https://www.onetrust.com/"><img src="../media/onetrust.png" alt="avo"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="segment" id="link_segment" href="https://segment.com/"><img src="../media/segment.png" alt="segment"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="googletagmanager" id="link_gtm" href="https://tagmanager.google.com.com/"><img src="../media/gtm.png" alt="gtm"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="vercel" id="link_vercel" href="https://vercel.com/"><img src="../media/Vercel_favicon.svg" alt="vercel"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="avo" id="link_avo" href="https://www.avo.app/"><img src="../media/avo.png" alt="avo"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="onetrust" id="link_onetrust" href="https://www.onetrust.com/"><img src="../media/onetrust.png" alt="onetrust"></a>
   </div>
   <nav>
     <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../index-segment.html">Segment</a></li>
-      <li><a href="../catalog.html">Catalog</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Home" href="../index.html">Home</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Segment" href="../index-segment.html">Segment</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Catlog" href="../catalog.html">Catalog</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Login" href="#">Login</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Contact" href="../contact.html">Contact</a></li>
     </ul> 
   </nav>
   <div class="main_container_intro">
@@ -77,15 +77,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img class="productImg" id="woodProduct1" src="../media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" value="product1">
   <p>A Walk in the Woods</p>
 
-    <input type="button" class="trackCall add_to_cart" id="addP1" value="Add To Cart" data-value="add_to_cart" data-properties="product1"></input>
+    <input type="button" class="trackCall add_to_cart" id="addP1" value="Add To Cart" data-event="add_to_cart" data-product_name="product1" data-sku="0000-p1" data-product_type="walking"></input>
 
 
 </div>
 <div class="footer">
   <!-- OneTrust Cookies Settings button start -->
-  <a href="#" rel="noopener noreferrer" class="trackCall optanon-toggle-display cookieSettings footerButton" value="Cookie Settings" data-value="cookie_settings">Cookie Settings</a>
-  <input type="button" class="trackCall footerButton" id="cu" value="Clear User" data-value="clear_user"></input>
-  <input type="button" class="trackCall footerButton" id="fnu" value="Fetch New User" data-value="fetch_new_user"></input>
+  <a href="#" rel="noopener noreferrer" class="trackCall optanon-toggle-display cookieSettings footerButton" value="Cookie Settings" data-event="cookie_settings">Cookie Settings</a>
+  <input type="button" class="trackCall footerButton" id="cu" value="Clear User" data-event="clear_user"></input>
+  <input type="button" class="trackCall footerButton" id="fnu" value="Fetch New User" data-event="fetch_new_user"></input>
   
   <!-- OneTrust Cookies Settings button end -->
 </div>

@@ -14,7 +14,6 @@ var fnu = document.getElementById("fnu");
 var consent_status = "";
 var user = {};
 var identify_properties = {
-
 };
 var data ={
   "device_type": "desktop",
@@ -120,8 +119,8 @@ user['consent_status'] = consent_status;
 for (const prop in user){
  if(prop !== "address" | prop !== "birthday" | prop !== "sex")
  identify_properties[prop]=user[prop];
-console.log("User Properties passed to identify_properties object: " +identify_properties);
 }
+console.log("User Properties passed to identify_properties object: " +JSON.stringify(identify_properties));
 }
 };
 

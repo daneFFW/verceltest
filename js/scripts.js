@@ -108,9 +108,6 @@ function managerProperties(event){
     if(event.dataset.hasOwnProperty(prop) && prop !== "event"){
      console.log("user and track:  " + prop)
      data[prop]=event.dataset[prop];
-     if(event.dataset.event === "signed_out"){
-      clearUser();
-     }else{
     user[prop]=event.dataset[prop];
     }
 }
@@ -118,16 +115,12 @@ localStorage.setItem("user", JSON.stringify(user));
 console.log("User Updated");
 data['consent_status'] = consent_status;
 user['consent_status'] = consent_status;
-if(event.dataset.event === "signed_out"){
-  clearUser();
- }else{
  
 for (const prop in user){
  if(prop !== "address" | prop !== "birthday" | prop !== "sex")
  identify_properties[prop]=user[prop];
 }
 console.log("User Properties passed to identify_properties object: " +JSON.stringify(identify_properties));
-}}
 };
 // if (localStorage.getItem('user')){
 //   user = JSON.parse(localStorage.getItem('user'))

@@ -28,7 +28,7 @@ var cookieList = document.cookie;
 //reusable functions
 
 
-function clearUser() {
+function clearUser(event) {
    if(localStorage.getItem("user")){
     localStorage.removeItem("user");
     localStorage.removeItem("uuid");
@@ -41,6 +41,7 @@ function clearUser() {
   } else{
     console.log("No user to clear");
     }
+    event.preventDefault();
   };
 
 function fetchNewUser(){
@@ -61,6 +62,7 @@ function fetchNewUser(){
   };
 
 cu.addEventListener("click",clearUser);
+so.addEventListener("click", clearUser);
 fnu.addEventListener("click",fetchNewUser);
 
 
@@ -136,6 +138,7 @@ function trackHandler(event){
 try {
   if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
     managerProperties(event.target);
+
     analytics.track(event.target.dataset.event,data)
     analytics.identify(uuid,identify_properties)
 
@@ -152,6 +155,7 @@ alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(
 } catch (error) {
   console.error("Error: " + error)
 }
+event.preventDefault();
 
 }
 
@@ -159,7 +163,6 @@ var trackCalls = document.querySelectorAll('.trackCall');
 trackCalls.forEach((trackCall) => {
   trackCall.addEventListener('click', trackHandler)
 })
-
 
 
 document.onreadystatechange = () => {

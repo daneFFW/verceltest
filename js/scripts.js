@@ -72,7 +72,7 @@ user['new_user'] = "false";
 uuid = localStorage.getItem('uuid')
 }else{
   fetchNewUser();
-}
+};
 
 // checks for OptanonConsent cookie if it exists returns the groups otherwise looks for the OptanonActiveGroups object and uses those values to populate groups. The cookie returns all 4 groups with :1(active) or :0(not active) after the group number while the OptanonActiveGroups only returns the groups that are active and omits the :1 and :0
 
@@ -87,12 +87,14 @@ function checkConsent(){
       console.log(consentGroups[1]);
       consent_status = consentGroups[1];
       data['consent_status'] = consent_status;
+      user['consent_status'] = consent_status;
       return consentGroups[1]
   }
   else if(typeof OptanonActiveGroups !== "undefined"){
       console.log("Optanon Cookie does not exist, looking for OptanonActiveGroups")
       consent_status = OptanonActiveGroups;
       data['consent_status'] = consent_status;
+      user['consent_status'] = consent_status;
       return OptanonActiveGroups}
   else{
     console.log("OneTrust Not Active")
@@ -101,9 +103,9 @@ function checkConsent(){
   catch (error) {
       console.error(":" + error)
   }
-}
+};
 
-function dataProperties(event){
+function allProperties(event){
   console.log("dateProperties read")
   for (const prop in event.dataset){
     if(event.dataset.hasOwnProperty(prop) && prop !== "event"){
@@ -114,8 +116,14 @@ function dataProperties(event){
 localStorage.setItem("user", JSON.stringify(user));
 console.log("User Updated");
 data['consent_status'] = consent_status;
+user['consent_status'] = consent_status;
+for (const prop in user){
+ if(prop !== "address" | prop !== "birthday" | prop !== "sex")
+ identify_properties[prop]=user[prop];
+console.log("User Properties passed to identify_properties object: " +identify_properties);
 }
 }
+};
 
 // Eventhandler, checks consent, captures properties of the event.target, sends segment track and identify calls if consent is granted or sends a vercel hit if it is not. 
 function trackHandler(event){
@@ -124,18 +132,14 @@ function trackHandler(event){
 
 try {
   if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
-    dataProperties(event.target);
+    allProperties(event.target);
     analytics.track(event.target.dataset.event,data)
-    analytics.identify({
-      "email":user.email,
-      "name":user.name,
-      "newsletter_status":(event.target.dataset.event === "newsletter_signed_up")? "subscribed": "",
-      "consent_status": consent_status
-    })
+    analytics.identify(uuid,identify_properties)
 
     alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Segment Fired")
 
 }else if(typeof va === "function"){
+  allProperties(event.target);
 va('event',{
 "name":event.target.dataset.event,
 data})

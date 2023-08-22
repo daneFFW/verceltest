@@ -25,9 +25,6 @@ var cookieList = document.cookie;
 
 
 
-
-
-
 // clears existing user, is called off the clear user button for testing or the signed_out button
 function clearUser(event) {
    if(localStorage.getItem("user")){
@@ -47,7 +44,7 @@ function clearUser(event) {
 cu.addEventListener("click",clearUser);
 if(so){so.addEventListener("click", clearUser);}
 // fetches new user using the apiNinja 
-
+// this is not needed past the demo
 function fetchNewUser(){
     fetch('https://api.api-ninjas.com/v1/randomuser',{
       method: 'GET',
@@ -69,6 +66,7 @@ fnu.addEventListener("click",fetchNewUser);
 
 
 // checks for OptanonConsent cookie if it exists returns the groups otherwise looks for the OptanonActiveGroups object and uses those values to populate groups. The cookie returns all 4 groups with :1(active) or :0(not active) after the group number while the OptanonActiveGroups only returns the groups that are active and omits the :1 and :0
+// proof of concept
 
 function checkConsent(){
   try {
@@ -101,7 +99,7 @@ function checkConsent(){
 };
 
 // looks for all data attributes of the element clicked. Returns all data attributes except event name and copies them the both the data object and user object. 
-
+// proof of concept
 function managerProperties(event, propObj1, propObj2){
   console.log("dateProperties read")
   if (!localStorage.getItem('user')&& event != "signed_out"){
@@ -122,29 +120,29 @@ console.log("User Properties passed to User " +JSON.stringify(user));
 };
 
 // Eventhandler, checks consent, captures properties of the event.target, sends segment track and identify calls if consent is granted or sends a vercel hit if it is not. 
+// proof of concept 
 function trackHandler(event){
-  consent_status = checkConsent();
-  console.log("Consent Status:" + consent_status);
- 
-try {
-  if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
+  try {
+    consent_status = checkConsent();
+    console.log("Consent Status:" + consent_status);
     managerProperties(event.target, data, user);
-    analytics.track(event.target.dataset.event,data)
-    analytics.identify(uuid,user)
-    alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Segment Fired")
-
-}else if(typeof va === "function"){
-  managerProperties(event.target, data);
-va('event',{
-"name":event.target.dataset.event,
-data})
-
-alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Vercel Fired")
-}
-} catch (error) {
-  console.error("Error: " + error)
-}
-
+  
+    if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
+      analytics.track(event.target.dataset.event,data)
+      analytics.identify(uuid,user)
+      
+      alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Segment Fired")
+  
+    }else if(typeof va === "function"){
+      va('event',{
+      "name":event.target.dataset.event,
+      data})
+  
+      alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Vercel Fired")
+    }
+  } catch (error) {
+    console.error("Error: " + error)
+  }
 }
 
 var trackCalls = document.querySelectorAll('.trackCall');
@@ -160,6 +158,5 @@ document.onreadystatechange = () => {
   analytics.page("home",{"consent_status":checkConsent()});
   console.log("DOM fully loaded and parsed Segment Pageview Called");
 }else{
-  clearUser();
   console.log("DOM fully loaded and parsed Consent Not Given Segment Page Not Called");
 }}};

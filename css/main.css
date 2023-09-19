@@ -114,10 +114,6 @@ body, html {
 }
 /* spiration backgrounds retrieved from https://www.toptal.com/designers/subtlepatterns/spiration-dark/ created by Monika */
 body {
-    /* background-image: url("../spiration dark/spiration dark.png");
-    min-height: 100%;
-    background-position: center;
-    background-size: repeat; */
     font-family: 'PT Mono', monospace;
 }
 .main_container_logo{
@@ -137,7 +133,7 @@ h3{    font-size: 1.4em;
     text-align: center;
 }
 p{
-    color: antiquewhite;
+    color: #142519;
     font-family: 'Roboto', sans-serif;
 }
 .main_container_intro{
@@ -147,25 +143,33 @@ p{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: space-around;
     border-radius: 10px;
+    
+}
+.main_container_intro_title h1.neonText {
+    margin: 0;
+}
+.main_container_intro_title h2.neonText {
+    margin: 0 0 10px 0;
 }
 
+.trackingCall-buttons h4.neonText {
+    text-align: center;
+    margin: 5px 0 10px;
+    text-decoration: underline #0fa;
+}
 .callToActionHeader{
-    margin: 0 0 0 2em;
+    margin: 0;
     font-weight: normal;
 }
+.products h4.neonText {
+    text-align: center;
+    margin: 0 0 10px 0;
+    text-decoration: underline #0fa;
+}
+
 .neonText {
     color: #0fa;
-    /* text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px #0fa,
-        0 0 82px #0fa,
-        0 0 92px #0fa,
-        0 0 102px #0fa,
-        0 0 151px #0fa; */
   }
 
 nav ul {
@@ -190,18 +194,27 @@ nav {
     margin: 2em 0;
 }
 
+.all-tracking-calls{
+    border: solid 1px #0fa;
+    border-radius: 27px;
+    padding: 10px;
+}
+.all-tracking-calls h3.neonText{
+    text-align: center;
+}
 /* Buttons */
+
 .trackCalls {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	justify-content: center;
     margin: 0 1em 2em;
 }
 
 input.trackCall, .cookieSettings, .footerButton {
     background-color: darkturquoise;
-    margin: 0 5px;
+    margin: 10px 5px;
     text-decoration: none;
     border: none;
     border-radius: 4px;
@@ -209,6 +222,7 @@ input.trackCall, .cookieSettings, .footerButton {
     box-shadow: 1px 1px 1px #00000059;
     color: white;
     font-family: sans-serif;
+    flex-basis: 18%;
 }
 
 
@@ -232,6 +246,7 @@ div.product {
 
 img.productImg {
     border-radius: 7px;
+    max-width: 300px;
 }
 
 div.product p {
@@ -249,6 +264,34 @@ text-decoration: none;
 
 .productLink p{
     color: black;
+}
+
+.tracking-alert-box {
+    height: 200px;
+    width: 500px;
+    margin: 0px auto 20px;
+    border: solid 1px #0fa;
+    border-radius: 11px;
+    box-shadow: 6px 7px 15px -3px rgba(0,206,209,0.9);
+    overflow-y: scroll;
+}
+
+.tracking-alert-box::-webkit-scrollbar-thumb {
+    background-color: rgba(0,206,209,0.9);
+    border-radius: 34px;
+    border: 1px solid #0fa;
+}
+.tracking-alert-box::-webkit-scrollbar {
+    width: 5px;
+}
+.tracking-alert-box::-webkit-scrollbar-track {
+    background: #0fa;
+}
+.tracking-alert-box .alertText{
+    margin: 5px;
+}
+.tracking-alert-box .alertText p {
+    margin: 0;
 }
 /* ==========================================================================
    Helper classes

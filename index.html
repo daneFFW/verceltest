@@ -18,11 +18,16 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for analytics.danenagy.com -->
-  <script>
+<!-- Segment SDK -->
+<script>
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE";;analytics.SNIPPET_VERSION="4.15.3";
   analytics.load("7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE");
   }}();
 </script>
+
+
+<!-- Segment SDK END -->
+
 <script>
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
@@ -32,7 +37,9 @@ dataLayer.push({
   'page_type':'home_page'
 })
 </script>
+<!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
+<!-- Vercel Analytis End-->
 
   <!-- Google Tag Manager -->
 <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -68,12 +75,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
-      <h1 class="neonText">Analytics Test Site</h1>
-      <h2 class="neonText">Privacy Focused Demo: Segment Blocked on Consent Revocation</h2>
-      <h3 class="neonText">Segment Vercel Avo GTM OneTrust</h3>
+      <h1 class="neonText">Demo Test Site</h1>
+      <h2 class="neonText">Privacy Focused: Segment Blocked on Opt Out</h2>
     </div>
 
   </div>
+  <div class="tracking-alert-box">
+<h3 class="tracking-alert-box-title"></h3>
+  </div>
+  <div class="all-tracking-calls">
+  <h3 class="neonText">Tracking Calls</h3>
+
+  <div class="trackingCall-buttons">
+  <h4 class="neonText">Button Events</h4>
+  
 <div class="trackCalls" id="trackCallList">
     <input type="button" class="trackCall identifyCall" id="nl" value="Newsletter Signed Up" data-event="newsletter_signed_up" data-user_newsletter_status="subscribed"></input>
     <input type="button" class="trackCall identifyCall" id="gd" value="Guide Downloaded" data-event="guide_downloaded" data-track_guide_name="How to Track Call"></input>
@@ -85,15 +100,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <input type="button" class="trackCall identifyCall" id="pc" value="Phone Contact" data-event="phone_contact"></input>
     <input type="button" class="trackCall identifyCall" id="ec" value="Email Contact" data-event="email_contact"></input>
 </div>
-<h3 class="neonText callToActionHeader">Products</h3>
+</div>
+<div class="products">
+<h4 class="neonText">Product Events</h4>
 <div class="trackCalls callToActions" id="callToActionsList">
 
- <a href="catalog/product1.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="woodCTA" src="media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" data-event="product_cta" data-product_name="product1" data-sku="0000-p1" data-product_type="walking"></a>
- <a href="catalog/product2.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="oceanCTA" src="media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" data-event="product_cta" data-product_name="product2" data-sku="0000-p2" data-product_type="swimming"></a>
- <a href="catalog/product3.html" class="callToActionLink"><img class="trackCall callToActionImg" id="mountainCTA" src="media/mountain.jpg"  alt="A Climb in the Mountains" title="A Climg in the Mountains" data-event="product_cta" data-product_name="product3" data-sku="0000-p3" data-product_type="climbing"></a>
-
+ <a href="catalog/product1.html" class="callToActionLink" target="_blank"><img class=" trackCall callToActionImg" id="woodCTA" src="media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" data-event="product_cta" data-product_name="product1" data-sku="0000-p1" data-product_type="walking"></a>
+ <a href="catalog/product2.html" class="callToActionLink" target="_blank"><img class=" trackCall callToActionImg" id="oceanCTA" src="media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" data-event="product_cta" data-product_name="product2" data-sku="0000-p2" data-product_type="swimming"></a>
+ <a href="catalog/product3.html" class="callToActionLink" target="_blank"><img class="trackCall callToActionImg" id="mountainCTA" src="media/mountain.jpg"  alt="A Climb in the Mountains" title="A Climg in the Mountains" data-event="product_cta" data-product_name="product3" data-sku="0000-p3" data-product_type="climbing"></a>
+</div>
+</div>
 </div>
 <div class="footer">
+  <h4 class="neonText">Reset Buttons</h4>
   <!-- OneTrust Cookies Settings button start -->
   <a href="#" rel="noopener noreferrer" class="trackCall optanon-toggle-display cookieSettings footerButton" value="Cookie Settings" data-event="cookie_settings">Cookie Settings</a>
   <input type="button" class="trackCall footerButton" id="cu" value="Clear User" data-event="clear_user"></input>

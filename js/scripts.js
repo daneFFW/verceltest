@@ -11,6 +11,7 @@ var pc = document.getElementById("pc");
 var ec = document.getElementById("ec");
 var cu = document.getElementById("cu");
 var fnu = document.getElementById("fnu");
+var tab = document.querySelector(".tracking-alert-box");
 var consent_status = "";
 var user = {};
 var data ={
@@ -58,7 +59,11 @@ function fetchNewUser(){
     uuid = crypto.randomUUID();
     localStorage.setItem('uuid',uuid);
     user['user_new_user'] = "true";
-    alert("Event: Fetch New User "+  "\n" + "User: " + JSON.stringify(localStorage.getItem("user")) + "\n" + "UUID: " + uuid)
+    tab.insertAdjacentHTML("beforeend",`<div class="alertText"><p>Event: Fetch New User </p>
+       <div>`)
+      tab.lastChild.scrollIntoView(false);
+      // <p>User:  ${JSON.stringify(localStorage.getItem("user"))}</p>
+      // <p>UUID: ${uuid}</p>
   };
 
 fnu.addEventListener("click",fetchNewUser);
@@ -128,17 +133,23 @@ function trackHandler(event){
     managerProperties(event.target, data, user);
   
     if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
-      analytics.track(event.target.dataset.event,data)
-      analytics.identify(uuid,user)
-      
-      alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Segment Fired")
-  
+      analytics.track(event.target.dataset.event,data);
+      analytics.identify(uuid,user);
+      tab.insertAdjacentHTML("beforeend",`<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
+       <p>User:  ${JSON.stringify(user.name)}</p>
+       <p>ConsentStatus: ${consent_status}</p>
+       <p>Segment Fired</p><div>`)
+      tab.lastChild.scrollIntoView(false);
     }else if(typeof va === "function"){
       va('event',{
       "name":event.target.dataset.event,
       data})
-  
-      alert("Event: " + event.target.dataset.event + "\n" + "User: " + JSON.stringify(user.name) + "\n" + "ConsentStatus:" + consent_status + "\n" + "Vercel Fired")
+
+      tab.insertAdjacentHTML("beforeend",`<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
+       <p>User:  ${JSON.stringify(user.name)}</p>
+       <p>ConsentStatus: ${consent_status}</p>
+       <p>Vercel Fired</p><div>`)
+       tab.lastChild.scrollIntoView(false);
     }
   } catch (error) {
     console.error("Error: " + error)

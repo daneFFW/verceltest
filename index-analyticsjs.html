@@ -18,12 +18,17 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for analytics.danenagy.com -->
-  <script>
+<!-- Segment SDK -->
+  <!-- <script>
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE";;analytics.SNIPPET_VERSION="4.15.3";
   analytics.load("7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE");
-  analytics.page();
   }}();
-</script>
+</script> -->
+
+<script defer src="js/analytics.js"></script>
+
+<!-- Segment SDK END -->
+
 <script>
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
@@ -33,7 +38,9 @@ dataLayer.push({
   'page_type':'home_page'
 })
 </script>
+<!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
+<!-- Vercel Analytis End-->
 
   <!-- Google Tag Manager -->
 <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -60,8 +67,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <nav>
     <ul>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Home" href="index.html">Home</a></li>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Segment" href="#">Segment</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Home" href="#">Home</a></li>
+      <li><a class="trackCall" data-event="header_click" data-link_name="Segment" href="index-segment.html">Segment</a></li>
       <li><a class="trackCall" data-event="header_click" data-link_name="Catlog" href="catalog.html">Catalog</a></li>
       <li><a class="trackCall" data-event="header_click" data-link_name="Login" href="#">Login</a></li>
       <li><a class="trackCall" data-event="header_click" data-link_name="Contact" href="contact.html">Contact</a></li>
@@ -70,20 +77,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
       <h1 class="neonText">Demo Test Site</h1>
-      <h2 class="neonText">Privacy Focused Demo: Segment Allowed on Consent Revocation</h2>
+      <h2 class="neonText">Privacy Focused Demo: Segment Blocked on Consent Revocation</h2>
     </div>
 
   </div>
-  <div class="trackCalls" id="trackCallList">
-    <input type="button" class="trackCall" id="nl" value="Newsletter Signed Up" data-event="newsletter_signed_up" data-newsletter_status="subscribed"></input>
-    <input type="button" class="trackCall" id="gd" value="Guide Downloaded" data-event="guide_downloaded"></input>
-    <input type="button" class="trackCall" id="su" value="Signed Up" data-event="signed_up" data-logged_in="true" data-new_user="true"></input>
-    <input type="button" class="trackCall" id="si" value="Signed In" data-event="signed_in" data-logged_in="true"></input>
-    <input type="button" class="trackCall" id="so" value="Signed Out" data-event="signed_out" data-logged_in="false"></input>
-    <input type="button" class="trackCall" id="ts" value="Trial Started" data-event="trial_started"></input>
-    <input type="button" class="trackCall" id="te" value="Trial Ended" data-event="trial_ended"></input>
-    <input type="button" class="trackCall" id="pc" value="Phone Contact" data-event="phone_contact"></input>
-    <input type="button" class="trackCall" id="ec" value="Email Contact" data-event="email_contact"></input>
+<div class="trackCalls" id="trackCallList">
+    <input type="button" class="trackCall identifyCall" id="nl" value="Newsletter Signed Up" data-event="newsletter_signed_up" data-user_newsletter_status="subscribed"></input>
+    <input type="button" class="trackCall identifyCall" id="gd" value="Guide Downloaded" data-event="guide_downloaded" data-track_guide_name="How to Track Call"></input>
+    <input type="button" class="trackCall identifyCall" id="su" value="Signed Up" data-event="signed_up" data-user_logged_in="true" data-user_new_user="true"></input>
+    <input type="button" class="trackCall identifyCall" id="si" value="Signed In" data-event="signed_in" data-user_logged_in="true"></input>
+    <input type="button" class="trackCall identifyCall" id="so" value="Signed Out" data-event="signed_out" data-user_logged_in="false"></input>
+    <input type="button" class="trackCall identifyCall" id="ts" value="Trial Started" data-event="trial_started" data-user_trial_status="true" data-track_trial_name="premium"></input>
+    <input type="button" class="trackCall identifyCall" id="te" value="Trial Ended" data-event="trial_ended" data-user_trial_status="false" data-track_trial_name="premium"></input>
+    <input type="button" class="trackCall identifyCall" id="pc" value="Phone Contact" data-event="phone_contact"></input>
+    <input type="button" class="trackCall identifyCall" id="ec" value="Email Contact" data-event="email_contact"></input>
 </div>
 <h3 class="neonText callToActionHeader">Products</h3>
 <div class="trackCalls callToActions" id="callToActionsList">
@@ -108,5 +115,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 
 </script>
-<script defer src="js/scriptspreconsent.js?version=1.2221"></script>
+<script defer src="js/scripts.js?version=1.2221"></script>
 </html>

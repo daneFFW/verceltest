@@ -11,21 +11,23 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet"> 
+<!-- fonts -->
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <!-- OneTrust Cookies Consent Notice start for analytics.danenagy.com -->
+
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="ee6b428f-7551-4601-b3fc-f6043ac46116" ></script>
 <script type="text/javascript">
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for analytics.danenagy.com -->
 <!-- Segment SDK -->
-  <!-- <script>
+<script>
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE";;analytics.SNIPPET_VERSION="4.15.3";
   analytics.load("7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE");
   }}();
-</script> -->
+</script>
 
-<script defer src="js/analytics.js"></script>
 
 <!-- Segment SDK END -->
 
@@ -60,27 +62,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="main_container">
   <div class="main_container_logo">
     <a data-event="external_link_click" class="trackCall" data-link_name="segment" id="link_segment" href="https://segment.com/"><img src="media/segment.png" alt="segment"></a>
-    <a data-event="external_link_click" class="trackCall" data-link_name="googletagmanager" id="link_gtm" href="https://tagmanager.google.com.com/"><img src="media/gtm.png" alt="gtm"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="googletagmanager" id="link_gtm" href="https://tagmanager.google.com/"><img src="media/gtm.png" alt="gtm"></a>
+    <a data-event="external_link_click" class="trackCall" data-link_name="googleanalyticsfour" id="link_gtm" href="https://analytics.google.com/"><img src="media/ga4.png" alt="ga4"></a>
     <a data-event="external_link_click" class="trackCall" data-link_name="vercel" id="link_vercel" href="https://vercel.com/"><img src="media/Vercel_favicon.svg" alt="vercel"></a>
     <a data-event="external_link_click" class="trackCall" data-link_name="avo" id="link_avo" href="https://www.avo.app/"><img src="media/avo.png" alt="avo"></a>
     <a data-event="external_link_click" class="trackCall" data-link_name="onetrust" id="link_onetrust" href="https://www.onetrust.com/"><img src="media/onetrust.png" alt="onetrust"></a>
   </div>
   <nav>
     <ul>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Home" href="#">Home</a></li>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Segment" href="index-segment.html">Segment</a></li>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Catlog" href="catalog.html">Catalog</a></li>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Login" href="#">Login</a></li>
-      <li><a class="trackCall" data-event="header_click" data-link_name="Contact" href="contact.html">Contact</a></li>
+      <li><a class="trackCall neonText" data-event="header_click" data-link_name="FFW Logo" href="#"><img src="media/FFW_adjusted_logo_CMYK_Pos-sm.png" alt=""></a></li>
+      <li><a class="trackCall neonText" data-event="header_click" data-link_name="Home" href="#">Home</a></li>
+      <li><a class="trackCall neonText" data-event="header_click" data-link_name="Segment" href="index-allowed.html">Segment</a></li>
+      <li><a class="trackCall neonText" data-event="header_click" data-link_name="Catlog" href="catalog.html">Catalog</a></li>
+      <li><a class="trackCall neonText" data-event="header_click" data-link_name="Login" href="#">Login</a></li>
+      <li><a class="trackCall neonText" data-event="header_click" data-link_name="Contact" href="contact.html">Contact</a></li>
     </ul> 
   </nav>
   <div class="main_container_intro">
     <div class="main_container_intro_title">
       <h1 class="neonText">Demo Test Site</h1>
-      <h2 class="neonText">Privacy Focused Demo: Segment Blocked on Consent Revocation</h2>
+      <h2 class="neonText">Privacy Focused: Segment Blocked on Opt Out</h2>
     </div>
 
   </div>
+  <div class="tracking-alert-box">
+<h3 class="tracking-alert-box-title"></h3>
+  </div>
+  <div class="all-tracking-calls">
+  <h3 class="neonText">Tracking Calls</h3>
+
+  <div class="trackingCall-buttons">
+  <h4 class="neonText">Button Events</h4>
+  
 <div class="trackCalls" id="trackCallList">
     <input type="button" class="trackCall identifyCall" id="nl" value="Newsletter Signed Up" data-event="newsletter_signed_up" data-user_newsletter_status="subscribed"></input>
     <input type="button" class="trackCall identifyCall" id="gd" value="Guide Downloaded" data-event="guide_downloaded" data-track_guide_name="How to Track Call"></input>
@@ -92,15 +105,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <input type="button" class="trackCall identifyCall" id="pc" value="Phone Contact" data-event="phone_contact"></input>
     <input type="button" class="trackCall identifyCall" id="ec" value="Email Contact" data-event="email_contact"></input>
 </div>
-<h3 class="neonText callToActionHeader">Products</h3>
+</div>
+<div class="products">
+<h4 class="neonText">Product Events</h4>
 <div class="trackCalls callToActions" id="callToActionsList">
 
- <a href="catalog/product1.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="woodCTA" src="media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" data-event="product_cta" data-product_name="product1" data-sku="0000-p1" data-product_type="walking"></a>
- <a href="catalog/product2.html" class="callToActionLink"><img class=" trackCall callToActionImg" id="oceanCTA" src="media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" data-event="product_cta" data-product_name="product2" data-sku="0000-p2" data-product_type="swimming"></a>
- <a href="catalog/product3.html" class="callToActionLink"><img class="trackCall callToActionImg" id="mountainCTA" src="media/mountain.jpg"  alt="A Climb in the Mountains" title="A Climg in the Mountains" data-event="product_cta" data-product_name="product3" data-sku="0000-p3" data-product_type="climbing"></a>
-
+ <a href="catalog/product1.html" class="callToActionLink" target="_blank"><img class=" trackCall callToActionImg" id="woodCTA" src="media/woods.jpg"  alt="A Walk in the Woods" title="A Walk in the Woods" data-event="product_cta" data-product_name="product1" data-sku="0000-p1" data-product_type="walking"></a>
+ <a href="catalog/product2.html" class="callToActionLink" target="_blank"><img class=" trackCall callToActionImg" id="oceanCTA" src="media/ocean.jpg"  alt="A Swim in the Ocean" title="A Swim in the Ocean" data-event="product_cta" data-product_name="product2" data-sku="0000-p2" data-product_type="swimming"></a>
+ <a href="catalog/product3.html" class="callToActionLink" target="_blank"><img class="trackCall callToActionImg" id="mountainCTA" src="media/mountain.jpg"  alt="A Climb in the Mountains" title="A Climg in the Mountains" data-event="product_cta" data-product_name="product3" data-sku="0000-p3" data-product_type="climbing"></a>
+</div>
+</div>
 </div>
 <div class="footer">
+  <h4 class="neonText">Reset Buttons</h4>
   <!-- OneTrust Cookies Settings button start -->
   <a href="#" rel="noopener noreferrer" class="trackCall optanon-toggle-display cookieSettings footerButton" value="Cookie Settings" data-event="cookie_settings">Cookie Settings</a>
   <input type="button" class="trackCall footerButton" id="cu" value="Clear User" data-event="clear_user"></input>
@@ -116,4 +133,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </script>
 <script defer src="js/scripts.js?version=1.2221"></script>
+<style>
+#onetrust-consent-sdk #onetrust-banner-sdk {
+  background-color: rgb(24, 24, 26);
+}
+#onetrust-policy div#onetrust-policy-text{
+  color: #ffffff;
+}
+#onetrust-consent-sdk #onetrust-pc-btn-handler, #onetrust-button-group button#onetrust-consent-sdk #onetrust-pc-btn-handler.cookie-setting-link,#onetrust-consent-sdk #onetrust-accept-btn-handler, #onetrust-banner-sdk #onetrust-reject-all-handler  {
+    color: rgb(24, 24, 26);
+    border-color: #ffffff;
+    background-color: #f8cc46;
+}
+#onetrust-consent-sdk #onetrust-banner-sdk *:focus, #onetrust-consent-sdk #onetrust-banner-sdk:focus{
+  outline-color: #f8cc46;
+}
+#onetrust-consent-sdk #onetrust-pc-sdk h3, #onetrust-consent-sdk #onetrust-pc-sdk h4, #onetrust-consent-sdk #onetrust-pc-sdk h5, #onetrust-consent-sdk #onetrust-pc-sdk h6, #onetrust-consent-sdk #onetrust-pc-sdk p, #onetrust-consent-sdk #onetrust-pc-sdk #ot-ven-lst .ot-ven-opts p, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-desc, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-title, #onetrust-consent-sdk #onetrust-pc-sdk .ot-li-title, #onetrust-consent-sdk #onetrust-pc-sdk .ot-sel-all-hdr span, #onetrust-consent-sdk #onetrust-pc-sdk #ot-host-lst .ot-host-info, #onetrust-consent-sdk #onetrust-pc-sdk #ot-fltr-modal #modal-header, #onetrust-consent-sdk #onetrust-pc-sdk .ot-checkbox label span, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst #ot-sel-blk p, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst #ot-lst-title h3, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst .back-btn-handler p, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst .ot-ven-name, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst #ot-ven-lst .consent-category, #onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-inactive-leg-btn, #onetrust-consent-sdk #onetrust-pc-sdk .ot-label-status, #onetrust-consent-sdk #onetrust-pc-sdk .ot-chkbox label span, #onetrust-consent-sdk #onetrust-pc-sdk #clear-filters-handler, #onetrust-consent-sdk #onetrust-pc-sdk .ot-optout-signal {
+  color: rgb(24, 24, 26) ;
+}
+#onetrust-consent-sdk #onetrust-pc-sdk, #onetrust-consent-sdk #ot-search-cntr, #onetrust-consent-sdk #onetrust-pc-sdk .ot-switch.ot-toggle, #onetrust-consent-sdk #onetrust-pc-sdk ot-grp-hdr1 .checkbox, #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-title:after, #onetrust-consent-sdk #onetrust-pc-sdk #ot-sel-blk, #onetrust-consent-sdk #onetrust-pc-sdk #ot-fltr-cnt, #onetrust-consent-sdk #onetrust-pc-sdk #ot-anchor {
+    background-color: #ffffff;
+}
+#onetrust-consent-sdk #onetrust-pc-sdk button:not(#clear-filters-handler):not(.ot-close-icon):not(#filter-btn-handler):not(.ot-remove-objection-handler):not(.ot-obj-leg-btn-handler):not([aria-expanded]):not(.ot-link-btn), #onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-active-leg-btn {
+    background-color: rgb(24, 24, 26);
+    border-color: rgb(24, 24, 26);
+    color: #FFFFFF;
+}
+</style>
 </html>

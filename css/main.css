@@ -114,7 +114,8 @@ body, html {
 }
 /* spiration backgrounds retrieved from https://www.toptal.com/designers/subtlepatterns/spiration-dark/ created by Monika */
 body {
-    font-family: 'PT Mono', monospace;
+    /* font-family: 'PT Mono', monospace; */
+    font-family: Poppins,arial,helvetica,sans-serif
 }
 .main_container_logo{
 margin: 32px 0;
@@ -134,7 +135,8 @@ h3{    font-size: 1.4em;
 }
 p{
     color: #142519;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: Poppins,arial,helvetica,sans-serif
 }
 .main_container_intro{
     display: flex;

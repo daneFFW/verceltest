@@ -167,6 +167,7 @@ p{
 .trackingCall-buttons h4.neonText {
     text-align: center;
     margin: 5px 0 10px;
+    color: var(--ffw-color);
 }
 .callToActionHeader{
     margin: 0;

@@ -122,6 +122,8 @@ body {
 }
 .main_container_logo{
 margin: 32px 0;
+display: flex;
+justify-content: flex-end;
 }
 .main_container_logo img{
     max-height: 20px;

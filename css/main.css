@@ -10,6 +10,13 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+:root{
+    --text-color:rgb(24, 24, 26);
+    --ffw-color: #f8cc46;
+    --matrix-green:#0fa;
+}
+
+
 html {
     color:#000;
     font-size: 1em;
@@ -102,12 +109,8 @@ textarea {
      min-height: 6000px;
      margin: 0 auto 7em;
  }
- h1, h2{
-    /* font-family: 'Roboto', sans-serif; */
-  /* color: rgba(166, 173, 255, 0.5);
-  text-shadow: 2px 2px 2px #000;);
-  color:#9c00c8;;*/
-  font-weight: 100;
+ h1, h2, h3, h4, h5, h6{
+  font-weight: 700;
  }
 body, html {
     height: 100%
@@ -158,7 +161,6 @@ p{
 .trackingCall-buttons h4.neonText {
     text-align: center;
     margin: 5px 0 10px;
-    text-decoration: underline #0fa;
 }
 .callToActionHeader{
     margin: 0;
@@ -167,29 +169,63 @@ p{
 .products h4.neonText {
     text-align: center;
     margin: 0 0 10px 0;
-    text-decoration: underline #0fa;
 }
 
 .neonText {
-    color: #0fa;
+    /* color: #0fa; */
+    color: var(--text-color);
   }
+
+.yellow_line {
+    position: absolute;
+    bottom: -10px;
+    background-color: #f8cc46;
+    border-radius: 3px;
+    height: 5px;
+    width: 0;
+}
+
+.grey_line {
+    position: absolute;
+    bottom: -10px;
+    background-color: #f8cc46;
+    border-radius: 3px;
+    height: 5px;
+    width: 0;
+}
 
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+   display: grid;
+   grid-template-columns: 50% repeat(5,auto);
 }
 
 nav ul li a {
     margin: 38px 5px;
     font-size: 1.4em;
     list-style: none;
-    color: #0fa;
     text-decoration: none;
+    font-weight: 700;
+}
+
+nav ul li::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 0;
+    bottom: 0;
+    background-image:#bcbcbc ;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    transform-origin: bottom right;
+    transition: background-size 0.35s ease-out;
+  }
+nav ul li a:hover {
+   text-decoration-line:solid 2px var(--ffw-color);
 }
 
 nav {
@@ -197,7 +233,7 @@ nav {
 }
 
 .all-tracking-calls{
-    border: solid 1px #0fa;
+    border: solid 1px var(--text-color);
     border-radius: 27px;
     padding: 10px;
 }
@@ -215,7 +251,7 @@ nav {
 }
 
 input.trackCall, .cookieSettings, .footerButton {
-    background-color: darkturquoise;
+    background-color: var(--text-color);
     margin: 10px 5px;
     text-decoration: none;
     border: none;
@@ -223,15 +259,15 @@ input.trackCall, .cookieSettings, .footerButton {
     padding: 10px;
     box-shadow: 1px 1px 1px #00000059;
     color: white;
-    font-family: sans-serif;
+    font-family: 'Poppins';
     flex-basis: 18%;
 }
 
 
 input.trackCall:active {
     box-shadow: 0 0 0 black;
-    background-color: rgb(1, 174, 177);
-    color: #e6e3e3;
+    background-color: var(--ffw-color);
+    color: var(--text-color);
 
 }
 
@@ -272,28 +308,34 @@ text-decoration: none;
     height: 200px;
     width: 500px;
     margin: 0px auto 20px;
-    border: solid 1px #0fa;
+    border: solid 1px var(--ffw-color);
     border-radius: 11px;
-    box-shadow: 6px 7px 15px -3px rgba(0,206,209,0.9);
+    box-shadow: 6px 7px 15px -3px rgba(223, 219, 6, 0.9);
     overflow-y: scroll;
 }
 
 .tracking-alert-box::-webkit-scrollbar-thumb {
-    background-color: rgba(0,206,209,0.9);
+    background-color: var(--text-color);
     border-radius: 34px;
-    border: 1px solid #0fa;
+    border: 1px solid var(--ffw-color);
 }
 .tracking-alert-box::-webkit-scrollbar {
     width: 5px;
 }
 .tracking-alert-box::-webkit-scrollbar-track {
-    background: #0fa;
+    background: var(--ffw-color);
 }
 .tracking-alert-box .alertText{
     margin: 5px;
 }
 .tracking-alert-box .alertText p {
     margin: 0;
+    font-weight: 700;
+}
+button#onetrust-button-group {
+    color: rgb(24, 24, 26);
+    border-color: #ffffff;
+    background-color: #f8cc46;
 }
 /* ==========================================================================
    Helper classes
@@ -415,7 +457,7 @@ text-decoration: none;
 
     a,
     a:visited {
-        text-decoration: underline;
+        text-decoration: none;
     }
 
     a[href]:after {

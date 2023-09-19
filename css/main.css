@@ -138,7 +138,7 @@ h2{    font-size: 2em;
 h3{    font-size: 1.4em;
     text-align: center;
 }
-h4{
+h4.neonText, h4{
     color: var(--ffw-color);
 }
 p{
@@ -164,11 +164,11 @@ p{
     margin: 0 0 10px 0;
 }
 
-h4.neonText {
+.all-tracking-calls h4.neonText {
     text-align: center;
     margin: 5px 0 10px;
-    color: var(--ffw-color);
 }
+
 .callToActionHeader{
     margin: 0;
     font-weight: normal;

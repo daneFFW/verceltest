@@ -136,11 +136,15 @@ h2{    font-size: 2em;
 h3{    font-size: 1.4em;
     text-align: center;
 }
+h4{
+    color: var(--ffw-color);
+}
 p{
     color: #142519;
     /* font-family: 'Roboto', sans-serif; */
     font-family: Poppins,arial,helvetica,sans-serif
 }
+
 .main_container_intro{
     display: flex;
     max-height: 1000px;
@@ -201,8 +205,11 @@ nav ul {
     display: flex;
    display: grid;
    grid-template-columns: 50% repeat(5,auto);
+   align-items: center;
 }
-
+nav ul:first-child img{
+    max-width: 100px;
+}
 nav ul li a {
     margin: 38px 5px;
     font-size: 1.4em;

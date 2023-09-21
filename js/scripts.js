@@ -43,7 +43,7 @@ function clearUser(event) {
   };
 
 cu.addEventListener("click",clearUser);
-if(so){so.addEventListener("click", clearUser);}
+so?.addEventListener("click", clearUser);
 // fetches new user using the apiNinja 
 // this is not needed past the demo
 function fetchNewUser(){
@@ -166,7 +166,7 @@ document.onreadystatechange = () => {
   if(document.readyState=== "complete"){
     consent_status = checkConsent();
   if(consent_status.includes("C0004:1,C0003:1")|consent_status.includes("C0004,C0003")){
-  analytics.page("home",{"consent_status":checkConsent()});
+  analytics.page(document.title,{"consent_status":checkConsent()});
   console.log("DOM fully loaded and parsed Segment Pageview Called");
 }else{
   console.log("DOM fully loaded and parsed Consent Not Given Segment Page Not Called");

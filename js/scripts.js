@@ -16,7 +16,6 @@ var consent_status = "";
 var user = {};
 var data ={
   "device_type": "desktop",
-  "location":"TX",
   "page_path": location.pathname,
   "consent_status":""
 };

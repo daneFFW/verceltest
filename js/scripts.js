@@ -122,12 +122,27 @@ function trackHandler(event) {
 
         if (consent_status.indexOf("C0003:1") > 0 && consent_status.indexOf("C0004:1") > 0 || consent_status.indexOf("C0003") > 0 && consent_status.indexOf("C0004") > 0 && consent_status.indexOf("C0003:0") < 0 && consent_status.indexOf("C0004:0") < 0) {
             analytics.track(event.target.dataset.event, data);
-            analytics.identify(uuid, user);
-            tab.insertAdjacentHTML("beforeend", `<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
-       <p>User:  ${JSON.stringify(user.name)}</p>
-       <p>ConsentStatus: ${consent_status}</p>
-       <p>Segment Fired</p><div>`)
+            if(localStorage.getItem("user")){
+                var userInfo = JSON.parse(localStorage.getItem("user"));
+                var combined_user_properties = Object.assign({},user,user_properties);
+                analytics.identify(uuid, combined_user_properties);
+                tab.insertAdjacentHTML("beforeend",
+                `<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
+                 <p>User:  ${userInfo.name}; Consent Given</p>
+                 <p>ConsentStatus: ${consent_status}</p>
+                 <p>Segment Fired</p><div>`)
             tab.lastChild.scrollIntoView(false);
+            }else{
+                analytics.identify(uuid,user_properties);
+                 tab.insertAdjacentHTML("beforeend",
+                `<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
+                 <p>User: "User Not Signed In; Consent Given"</p>
+                 <p>ConsentStatus: ${consent_status}</p>
+                 <p>Segment Fired</p><div>`)
+            tab.lastChild.scrollIntoView(false);
+            }
+            
+           
         } else if (typeof va === "function") {
             va('event', {
                 "name": event.target.dataset.event,
@@ -135,7 +150,7 @@ function trackHandler(event) {
             })
 
             tab.insertAdjacentHTML("beforeend", `<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
-       <p>User:  ${JSON.stringify(user.name)}</p>
+       <p>User: is signed out with Consent Denied</p>
        <p>ConsentStatus: ${consent_status}</p>
        <p>Vercel Fired</p><div>`)
             tab.lastChild.scrollIntoView(false);

@@ -131,7 +131,7 @@ function trackHandler(event){
     console.log("Consent Status:" + consent_status);
     managerProperties(event.target, data, user);
   
-    if(consent_status.includes("C0003:1")&&consent_status.includes("C0004:1")|consent_status.includes("C0004")&&consent_status.includes("C0004")){
+    if(consent_status.indexOf("C0003:1")>0 &&consent_status.indexOf("C0004:1")>0 ||consent_status.indexOf("C0003")>0 &&consent_status.indexOf("C0004")>0 && consent_status.indexOf("C0003:0")<0&& consent_status.indexOf("C0004:0")<0){
       analytics.track(event.target.dataset.event,data);
       analytics.identify(uuid,user);
       tab.insertAdjacentHTML("beforeend",`<div class="alertText"><p>Event: ${event.target.dataset.event}</p>
@@ -164,7 +164,7 @@ trackCalls.forEach((trackCall) => {
 document.onreadystatechange = () => {
   if(document.readyState=== "complete"){
     consent_status = checkConsent();
-    if(consent_status.includes("C0003:1")&&consent_status.includes("C0004:1")|consent_status.includes("C0004")&&consent_status.includes("C0004")){
+    if(consent_status.indexOf("C0003:1")>0 &&consent_status.indexOf("C0004:1")>0 ||consent_status.indexOf("C0003")>0 &&consent_status.indexOf("C0004")>0 && consent_status.indexOf("C0003:0")<0&& consent_status.indexOf("C0004:0")<0){
     analytics.page(document.title,{"consent_status":checkConsent()});
     console.log("DOM fully loaded and parsed Segment Pageview Called");
 }else{

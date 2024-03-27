@@ -146,11 +146,11 @@ function trackHandler(event) {
             }
             
            
-        } else if (typeof va === "function") {
-            dataLayer({
+        } else{
+            dataLayer.push({
                 "event":event.target.dataset.event,
             })
-            va('event', {
+            !va('event', {
                 "name": event.target.dataset.event,
                 data
             })

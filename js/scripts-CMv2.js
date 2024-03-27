@@ -119,7 +119,9 @@ function trackHandler(event) {
         consent_status = checkConsent();
         console.log("Consent Status:" + consent_status);
         managerProperties(event.target, data, user_properties);
-        
+        // dataLayer({
+        //     "event":event.target.dataset.event,
+        // })
 
         if (consent_status.indexOf("C0003:1") > 0 && consent_status.indexOf("C0004:1") > 0 || consent_status.indexOf("C0003") > 0 && consent_status.indexOf("C0004") > 0 && consent_status.indexOf("C0003:0") < 0 && consent_status.indexOf("C0004:0") < 0) {
             analytics.track(event.target.dataset.event, data);
@@ -145,6 +147,9 @@ function trackHandler(event) {
             
            
         } else if (typeof va === "function") {
+            dataLayer({
+                "event":event.target.dataset.event,
+            })
             va('event', {
                 "name": event.target.dataset.event,
                 data

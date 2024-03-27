@@ -143,8 +143,8 @@ function trackHandler(event) {
             }
             
            
-        } else if (typeof va === "function") {
-            va('event', {
+        } else {
+            !va('event', {
                 "name": event.target.dataset.event,
                 data
             })

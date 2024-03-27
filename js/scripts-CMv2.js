@@ -119,7 +119,7 @@ function trackHandler(event) {
         consent_status = checkConsent();
         console.log("Consent Status:" + consent_status);
         managerProperties(event.target, data, user_properties);
-        // dataLayer({
+        // dataLayer.push({
         //     "event":event.target.dataset.event,
         // })
 

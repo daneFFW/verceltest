@@ -14,85 +14,43 @@
 <!-- fonts -->
 <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<!-- OneTrust Cookies Consent Notice start for analytics.danenagy.com -->
 
 <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="018e343b-1b4d-70d8-867f-7b9366f8c8a6" ></script>
 
-<!-- <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="6e0f002c-3455-42cf-a927-fd632284aa94" ></script> -->
-<!-- new script TR  6e0f002c-3455-42cf-a927-fd632284aa94-->
-<!-- 3570598c-e484-4a2c-924b-0321c2e0fb77 -->
-<!-- old script key ee6b428f-7551-4601-b3fc-f6043ac46116 -->
 <script type="text/javascript">
 function OptanonWrapper() { }
 </script>
-<!-- OneTrust Cookies Consent Notice end for analytics.danenagy.com -->
-<!-- Segment SDK -->
-<!-- <script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE";;analytics.SNIPPET_VERSION="4.15.3";
-  analytics.load("7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE");
-
-  }}();
-</script> -->
-<!-- Segment SDK END -->
-
-<!-- Include from CDN Analytics.js David Wells https://getanalytics.io/-->
 <script src="https://unpkg.com/analytics/dist/analytics.min.js"></script>
-<!-- Include plugins -->
+<!-- <script src="https://unpkg.com/@analytics/google-analytics/dist/@analytics/google-analytics.min.js"></script> -->
 <script src="https://unpkg.com/@analytics/google-tag-manager/dist/@analytics/google-tag-manager.min.js"></script>
 
 <script type="text/javascript">
-  /* Initialize analytics */
-  var Analytics = _analytics.init({
-    app: 'analytics-html-demo',
-    debug: true,
-    version: 100,
-    plugins: [
-    analyticsGtagManager({
-      containerId: 'gtm-n8ktft6'
-    })
-      // ... add other plugins
-    ]
-  })
-
-  /* Then use */
-  // Analytics.page();
+      /* Initialize analytics */
+      var analytics = _analytics.init({
+        app: 'analytics-html-demo',
+        debug: true,
+        plugins: [
+          // attach google analytics plugin
+          // analyticsGa({
+          //   measurementIds: ['G-abc123']
+          // })
+          analyticsGtagManager({
+            containerId: 'GTM-N8KTFT6'
+          }),
+          // ... add any other third party analytics plugins
+        ]
+      })
+      /* Fire page view */
+      // Analytics.page()
+      /* Attaching a listener */
+      analytics.on('*', ({ payload }) => {
+        console.log(`Event ${payload.type}`, payload)
+      })
 </script>
-<!-- analytics.load("7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE"); -->
-
-
-
-<script>
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-  'event':'page_load',
-  'page_path':'/',
-  'page_name':'home',
-  'page_type':'home_page'
-})
-</script>
-<!-- Vercel Analytics -->
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-
-<!-- test deploy -->
-<!-- Vercel Analytis End-->
-
-  <!-- Google Tag Manager -->
-<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N8KTFT6');</script> -->
-<!-- End Google Tag Manager -->
 
   </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8KTFT6"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
-<!-- End Google Tag Manager (noscript) -->
+
 
 <div class="main_container">
   <div class="main_container_logo">
@@ -167,7 +125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 
 </script>
-<script defer src="js/scripts-CMv2.js?version=1"></script>
+<script defer src="js/scripts-CM-DW.js?version=1"></script>
 <style>
 #onetrust-consent-sdk #onetrust-banner-sdk {
   background-color: rgb(24, 24, 26);

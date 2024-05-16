@@ -23,6 +23,7 @@ function OptanonWrapper() { }
 <script src="https://unpkg.com/analytics/dist/analytics.min.js"></script>
 <!-- <script src="https://unpkg.com/@analytics/google-analytics/dist/@analytics/google-analytics.min.js"></script> -->
 <script src="https://unpkg.com/@analytics/google-tag-manager/dist/@analytics/google-tag-manager.min.js"></script>
+<script src="https://unpkg.com/@analytics/segment/dist/@analytics/segment.min.js"></script>
 
 <script type="text/javascript">
       /* Initialize analytics */
@@ -37,6 +38,9 @@ function OptanonWrapper() { }
           analyticsGtagManager({
             containerId: 'GTM-N8KTFT6'
           }),
+          analyticsSegment({
+            writeKey: '7i42ah1xfNTDPAQLD3NNJmDZvgNg8uFE'
+          })
           // ... add any other third party analytics plugins
         ]
       })

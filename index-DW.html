@@ -24,6 +24,13 @@ function OptanonWrapper() { }
 <!-- <script src="https://unpkg.com/@analytics/google-analytics/dist/@analytics/google-analytics.min.js"></script> -->
 <script src="https://unpkg.com/@analytics/google-tag-manager/dist/@analytics/google-tag-manager.min.js"></script>
 <script src="https://unpkg.com/@analytics/segment/dist/@analytics/segment.min.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N8KTFT6');</script>
+  <!-- End Google Tag Manager -->
 
 <script type="text/javascript">
       /* Initialize analytics */
@@ -49,12 +56,15 @@ function OptanonWrapper() { }
       /* Attaching a listener */
       analytics.on('*', ({ payload }) => {
         console.log(`Event ${payload.type}`, payload)
-      })
+      });
 </script>
 
   </head>
 <body>
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8KTFT6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 <div class="main_container">
   <div class="main_container_logo">
